@@ -1,3 +1,11 @@
+/*
+ *<<<<<<<<<<    SPI_program.c    >>>>>>>>>>
+ *
+ *  Author : Rashad
+ *  Layer  : MCAL
+ *  SWC    : SPI
+ *
+ */
 #include "../../LIB/STD_TYPES.h"
 #include "../../LIB/BIT_MATH.h"
 /* Include My own Header Files*/
@@ -15,12 +23,11 @@ void (*Global_PF_Vector_12)(u8 *Copy_u8RecivedData) = NULL ;
 void SPI_voidMasterInit (void)
 {
 
-/*        Master I/O PIN Mode           */
-    DIO_voidSetPinDirection(PORTB,PIN5,OUTPUT);         // MOSI OUTPUT in Master Mode
-    DIO_voidSetPinDirection(PORTB,PIN6,INPUT);          // MISO INPUT  in Master Mode
-    DIO_voidSetPinDirection(PORTB,PIN7,OUTPUT);         // CLOK OUTPUT in Master Mode
-    DIO_voidSetPinDirection(PORTB,PIN4,INPUT);          // SS Slave Select INPUT in Master Mode if we have one Slave only
-    DIO_voidConfig_Pull_Up_Pin(PORTB,PIN4,ON);          // For Protection From Noise and Set 0 at SS in Slave to Activate this one Slave
+/*        Master I/O DIO_PIN Mode           */
+    DIO_voidSetPinDirection(DIO_PORTB,DIO_PIN5,DIO_OUTPUT);         // MOSI DIO_OUTPUT in Master Mode
+    DIO_voidSetPinDirection(DIO_PORTB,DIO_PIN6,DIO_INPUT);          // MISO DIO_INPUT  in Master Mode
+    DIO_voidSetPinDirection(DIO_PORTB,DIO_PIN7,DIO_OUTPUT);         // CLOK DIO_OUTPUT in Master Mode
+    DIO_voidSetPinDirection(DIO_PORTB,DIO_PIN4,DIO_INPUT);          // SS Slave Select DIO_INPUT in Master Mode if we have one Slave only
 
 
 /*          Select Master  Mode         */
@@ -31,7 +38,7 @@ void SPI_voidMasterInit (void)
 /*    Select MSB or LSB Send at First   */
    
     #if ( DATA_ORDER == MSB_FIRST )
-        CLEAR_BIT(SPCR_REG,SPCR_DORD);                  // select MSB to be send first
+        CLR_BIT(SPCR_REG,SPCR_DORD);                  // select MSB to be send first
     #elif ( DATA_ORDER == LSB_FIRST )
         SET_BIT(SPCR_REG,SPCR_DORD);                    // select LSB to be send first
     #endif
@@ -40,7 +47,7 @@ void SPI_voidMasterInit (void)
 /*  Select Clock Polarity Raisinr or Falling */
      
     #if ( CLK_POLARITY == RAISING_Leading_Edge )    
-        CLEAR_BIT(SPCR_REG,SPCR_CPOL);                  // Select Raising at Leading edge & Falling at Tralling Edge
+        CLR_BIT(SPCR_REG,SPCR_CPOL);                  // Select Raising at Leading edge & Falling at Tralling Edge
     #elif ( CLK_POLARITY == FALLING_Leading_Edge )     
         SET_BIT(SPCR_REG,SPCR_CPOL);                    // Select Falling at Leading edge & Raising at Tralling Edge
     #endif
@@ -49,7 +56,7 @@ void SPI_voidMasterInit (void)
 /*  Select Clock Phase Sample or setup on Leading */
   
     #if ( CLK_PHASE == SAMPLE_Leading_Edge )     
-        CLEAR_BIT(SPCR_REG,SPCR_CPHA);                  // Select Sampling at leadding edge & Setup at Trailling Edge
+        CLR_BIT(SPCR_REG,SPCR_CPHA);                  // Select Sampling at leadding edge & Setup at Trailling Edge
     #elif ( CLK_PHASE == SETUP_Leading_Edge )    
         SET_BIT(SPCR_REG,SPCR_CPHA);                    // Select Setup at leadding edge & Sampling at Trailling Edge
     #endif
@@ -58,31 +65,31 @@ void SPI_voidMasterInit (void)
 /*            SPI Prescaler Selection            */
 
     #if(PRESCALER == PRESCALER_DIVISION_BY_4)
-        CLEAR_BIT(SPCR_REG,SPCR_SPR0);
-        CLEAR_BIT(SPCR_REG,SPCR_SPR1);
-        CLEAR_BIT(SPSR_REG,SPSR_SPI2X);
+        CLR_BIT(SPCR_REG,SPCR_SPR0);
+        CLR_BIT(SPCR_REG,SPCR_SPR1);
+        CLR_BIT(SPSR_REG,SPSR_SPI2X);
     #elif(PRESCALER == PRESCALER_DIVISION_BY_16)
           SET_BIT(SPCR_REG,SPCR_SPR0);
-        CLEAR_BIT(SPCR_REG,SPCR_SPR1);
-        CLEAR_BIT(SPSR_REG,SPSR_SPI2X);
+        CLR_BIT(SPCR_REG,SPCR_SPR1);
+        CLR_BIT(SPSR_REG,SPSR_SPI2X);
     #elif(PRESCALER == PRESCALER_DIVISION_BY_64)
-        CLEAR_BIT(SPCR_REG,SPCR_SPR0);
+        CLR_BIT(SPCR_REG,SPCR_SPR0);
           SET_BIT(SPCR_REG,SPCR_SPR1);
-        CLEAR_BIT(SPSR_REG,SPSR_SPI2X);
+        CLR_BIT(SPSR_REG,SPSR_SPI2X);
     #elif(PRESCALER == PRESCALER_DIVISION_BY_128)
           SET_BIT(SPCR_REG,SPCR_SPR0);
           SET_BIT(SPCR_REG,SPCR_SPR1);
-        CLEAR_BIT(SPSR_REG,SPSR_SPI2X);
+        CLR_BIT(SPSR_REG,SPSR_SPI2X);
     #elif(PRESCALER == PRESCALER_DIVISION_BY_2)
-        CLEAR_BIT(SPCR_REG,SPCR_SPR0);
-        CLEAR_BIT(SPCR_REG,SPCR_SPR1);
+        CLR_BIT(SPCR_REG,SPCR_SPR0);
+        CLR_BIT(SPCR_REG,SPCR_SPR1);
           SET_BIT(SPSR_REG,SPSR_SPI2X);
     #elif(PRESCALER == PRESCALER_DIVISION_BY_8)
           SET_BIT(SPCR_REG,SPCR_SPR0);
-        CLEAR_BIT(SPCR_REG,SPCR_SPR1);
+        CLR_BIT(SPCR_REG,SPCR_SPR1);
           SET_BIT(SPSR_REG,SPSR_SPI2X);
     #elif(PRESCALER == PRESCALER_DIVISION_BY_32)
-        CLEAR_BIT(SPCR_REG,SPCR_SPR0);
+        CLR_BIT(SPCR_REG,SPCR_SPR0);
           SET_BIT(SPCR_REG,SPCR_SPR1);
           SET_BIT(SPSR_REG,SPSR_SPI2X);
     #endif
@@ -98,20 +105,20 @@ void SPI_voidMasterInit (void)
 void SPI_voidSlaveInit (void)
 {
 
-/*          Slave I/O PIN Mode          */
-    DIO_voidSetPinDirection (PORTB,PIN5,INPUT);         // MOSI  INPUT in Slave Mode
-    DIO_voidSetPinDirection(PORTB,PIN6,OUTPUT);         // MISO OUTPUT in Slave Mode
-    DIO_voidSetPinDirection (PORTB,PIN7,INPUT);         // CLOK  INPUT in Slave Mode
-    DIO_voidSetPinDirection (PORTB,PIN4,INPUT);         // SS Slave Select INPUT in Slave Mode 
-    DIO_voidSetPinValue (PORTB,PIN4,LOW);               // Set LOW on SS Always if we have one Slave
+/*          Slave I/O DIO_PIN Mode          */
+    DIO_voidSetPinDirection (DIO_PORTB,DIO_PIN5,DIO_INPUT);         // MOSI  DIO_INPUT in Slave Mode
+    DIO_voidSetPinDirection(DIO_PORTB,DIO_PIN6,DIO_OUTPUT);         // MISO DIO_OUTPUT in Slave Mode
+    DIO_voidSetPinDirection (DIO_PORTB,DIO_PIN7,DIO_INPUT);         // CLOK  DIO_INPUT in Slave Mode
+    DIO_voidSetPinDirection (DIO_PORTB,DIO_PIN4,DIO_INPUT);         // SS Slave Select DIO_INPUT in Slave Mode
+    DIO_voidSetPinValue (DIO_PORTB,DIO_PIN4,DIO_LOW);               // Set LOW on SS Always if we have one Slave
 
 /*          Select Slave  Mode          */
     
-    CLEAR_BIT(SPCR_REG,SPCR_MSTR);
+    CLR_BIT(SPCR_REG,SPCR_MSTR);
 
 /*    Select MSB or LSB Send at First   */              // Same With Master Configration.   
     #if ( DATA_ORDER == MSB_FIRST )
-        CLEAR_BIT(SPCR_REG,SPCR_DORD);                  // select MSB to be send first
+        CLR_BIT(SPCR_REG,SPCR_DORD);                  // select MSB to be send first
     #elif ( DATA_ORDER == LSB_FIRST )
         SET_BIT(SPCR_REG,SPCR_DORD);                    // select LSB to be send first
     #endif
@@ -120,7 +127,7 @@ void SPI_voidSlaveInit (void)
 /*  Select Clock Polarity Raisinr or Falling */         // Same With Master Configration.
      
     #if ( CLK_POLARITY == RAISING_Leading_Edge )    
-        CLEAR_BIT(SPCR_REG,SPCR_CPOL);                  // Select Raising at Leading edge & Falling at Tralling Edge
+        CLR_BIT(SPCR_REG,SPCR_CPOL);                  // Select Raising at Leading edge & Falling at Tralling Edge
     #elif ( CLK_POLARITY == FALLING_Leading_Edge )     
         SET_BIT(SPCR_REG,SPCR_CPOL);                    // Select Falling at Leading edge & Raising at Tralling Edge
     #endif
@@ -129,7 +136,7 @@ void SPI_voidSlaveInit (void)
 /*  Select Clock Phase Sample or setup on Leading */    // Same With Master Configration.
   
     #if ( CLK_PHASE == SAMPLE_Leading_Edge )     
-        CLEAR_BIT(SPCR_REG,SPCR_CPHA);                  // Select Sampling at leadding edge & Setup at Trailling Edge
+        CLR_BIT(SPCR_REG,SPCR_CPHA);                  // Select Sampling at leadding edge & Setup at Trailling Edge
     #elif ( CLK_PHASE == SETUP_Leading_Edge )    
         SET_BIT(SPCR_REG,SPCR_CPHA);                    // Select Setup at leadding edge & Sampling at Trailling Edge
     #endif
@@ -215,5 +222,5 @@ void __vector_12 (void)
     Local_u8Data = SPDR_REG ;
     u8 *Local_Pu8Data = &Local_u8Data ;
     Global_PF_Vector_12 ( Local_Pu8Data );      // Call Back Application Function
-    CLEAR_BIT(SPCR_REG,SPCR_SPIE);              // Disable SPI Interrupt
+    CLR_BIT(SPCR_REG,SPCR_SPIE);              // Disable SPI Interrupt
 }

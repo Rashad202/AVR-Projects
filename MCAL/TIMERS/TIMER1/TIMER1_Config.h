@@ -1,3 +1,11 @@
+/*
+ *<<<<<<<<<<<    TIMER_Config.h   >>>>>>>>>>>>
+ *
+ *  Author : Rashad
+ *  Layer  : MCAL
+ *  SWC    : Timer
+ *
+ */
 #ifndef TIMER1_CONFIG_H
 #define TIMER1_CONFIG_H
 

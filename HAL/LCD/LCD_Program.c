@@ -14,15 +14,15 @@
 void LCD_voidInit (void)
 {
     /* Control Pins Directions */
-    DIO_voidSetPortDirection(LCD_DATA_PORT , OUTPUT);
-    DIO_voidSetPinDirection(LCD_CONTROL_PORT,RS_PIN,OUTPUT);
-    DIO_voidSetPinDirection(LCD_CONTROL_PORT,RW_PIN,OUTPUT);
-    DIO_voidSetPinDirection(LCD_CONTROL_PORT,E_PIN,OUTPUT);
+    DIO_voidSetPortDirection(LCD_DATA_PORT , DIO_OUTPUT);
+    DIO_voidSetPinDirection(LCD_CONTROL_PORT,RS_PIN,DIO_OUTPUT);
+    DIO_voidSetPinDirection(LCD_CONTROL_PORT,RW_PIN,DIO_OUTPUT);
+    DIO_voidSetPinDirection(LCD_CONTROL_PORT,E_PIN,DIO_OUTPUT);
 
     _delay_ms(35);    //TIMER0_voidSetBusyWait_ms(35);
 
     /* Send Command Function Set */
-    LCD_voidWriteCommand ( FS_8BIT_2LINES_5x10 );
+    LCD_voidWriteCommand ( FS_8BIT_2LINES_5x7 );
     _delay_ms(1);     // TIMER0_voidSetBusyWait_ms(1);
 
     /* Send Command Display ON-OFF Control */
@@ -44,36 +44,36 @@ void LCD_voidInit (void)
 void LCD_voidWriteCommand ( u8 Copy_u8Command )
 {
     /* RS=0 because we send a Command not Data */
-    DIO_voidSetPinValue (LCD_CONTROL_PORT,RS_PIN,LOW);
+    DIO_voidSetPinValue (LCD_CONTROL_PORT,RS_PIN,DIO_LOW);
 
     /* RW=0 because we Write a Command not Read */
-    DIO_voidSetPinValue (LCD_CONTROL_PORT,RW_PIN,LOW);
+    DIO_voidSetPinValue (LCD_CONTROL_PORT,RW_PIN,DIO_LOW);
 
     /* Send Data bits from MC PINS to LCD Data PINS */
     DIO_voidSetPortValue(LCD_DATA_PORT,Copy_u8Command);
 
     /* Falling Edge on E PIN to make LCD Read This Command */
-    DIO_voidSetPinValue (LCD_CONTROL_PORT,E_PIN,HIGH);
+    DIO_voidSetPinValue (LCD_CONTROL_PORT,E_PIN,DIO_HIGH);
     //_delay_ms(1);
-    DIO_voidSetPinValue (LCD_CONTROL_PORT,E_PIN,LOW);
+    DIO_voidSetPinValue (LCD_CONTROL_PORT,E_PIN,DIO_LOW);
 }
 
 
 void LCD_voidWriteChar ( u8 Copy_u8Char )
 {
     /* RS=1 because we send a Data not Command */
-    DIO_voidSetPinValue (LCD_CONTROL_PORT,RS_PIN,HIGH);
+    DIO_voidSetPinValue (LCD_CONTROL_PORT,RS_PIN,DIO_HIGH);
 
     /* RW=0 because we Write a Data not Read */
-    DIO_voidSetPinValue (LCD_CONTROL_PORT,RW_PIN,LOW);
+    DIO_voidSetPinValue (LCD_CONTROL_PORT,RW_PIN,DIO_LOW);
 
     /* Send Data bits from MC PINS to LCD Data PINS */
     DIO_voidSetPortValue(LCD_DATA_PORT,Copy_u8Char);
 
     /* Falling Edge on E PIN to make LCD Read This Command */
-    DIO_voidSetPinValue (LCD_CONTROL_PORT,E_PIN,HIGH);
+    DIO_voidSetPinValue (LCD_CONTROL_PORT,E_PIN,DIO_HIGH);
     //_delay_ms(1);
-    DIO_voidSetPinValue (LCD_CONTROL_PORT,E_PIN,LOW);
+    DIO_voidSetPinValue (LCD_CONTROL_PORT,E_PIN,DIO_LOW);
 }
 
 
@@ -129,7 +129,7 @@ void LCD_voidGoTo_XY ( u8 Copy_u8Line , u8 Copy_u8Position )
 
 void LCD_voidDrawPattern ( u8 Copy_u8Pattern_Number , u8 *Copy_u8Arr_Pattern )
 {
-    LCD_voidWriteCommand ( Copy_u8Pattern_Number );   
+    LCD_voidWriteCommand ( Copy_u8Pattern_Number );
 
     for ( u8 i=0 ; i < 8 ; i++ )
     {

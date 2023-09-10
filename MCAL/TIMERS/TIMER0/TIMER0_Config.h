@@ -1,40 +1,51 @@
+/*
+ *<<<<<<<<<<<    TIMER_Config.h   >>>>>>>>>>>>
+ *
+ *  Author : Rashad
+ *  Layer  : MCAL
+ *  SWC    : Timer
+ *
+ */
 #ifndef TIMER0_CONFIG_H
 #define TIMER0_CONFIG_H
 
 
-/*              TIMER0 Mode Selection            */
+/*
+ *               TIMER0 Mode Selection
 
-#define     NORMAL_OVF                   0
-#define     PWM_PHASECORRECT             1
-#define     CTC                          2
-#define     FAST_PWM                     3
-
+     NORMAL_OVF
+     PWM_PHASECORRECT
+     CTC
+     FAST_PWM
+ */
 
 #define     MODE                     CTC
 
 
-/*               OC0 Mode Selection                         */
+/*
+ *                OC0 Mode Selection
 
-#define     DISCONNECTED                                    0
-#define     SETonTOP_CLEARonCOMPARE                         1
-#define     SETonCOMPARE_CLEARonTOP                         2
-#define     SETonCOMPdownCounting_CLEARonCOMPupCounting     3    
-#define     SETonCOMPupCounting_CLEARonCOMPdownCounting     4
-
+     DISCONNECTED
+     SETonTOP_CLEARonCOMPARE
+     SETonCOMPARE_CLEARonTOP
+     SETonCOMPdownCounting_CLEARonCOMPupCounting
+     SETonCOMPupCounting_CLEARonCOMPdownCounting
+*/
 #define     OC0_MODE      SETonTOP_CLEARonCOMPARE
 
 
-/*          TIMER0 Prescaller Selection          */
+/*
+ *          TIMER0 Prescaller Selection
 
-#define     NO_CLK_SOURCE_TIMER_STOPED          0
-#define     NOT_USE_PRESCALER                   1
-#define     PRESCALER_DIVISION_BY_8             8
-#define     PRESCALER_DIVISION_BY_64            64
-#define     PRESCALER_DIVISION_BY_256           256
-#define     PRESCALER_DIVISION_BY_1024          1024
-#define     EXTERNAL_CLK_SOURCE_FALLING_EDGE    6
-#define     EXTERNAL_CLK_SOURCE_RAISING_EDGE    7
-
+     NO_CLK_SOURCE_TIMER_STOPED
+     NOT_USE_PRESCALER
+     PRESCALER_DIVISION_BY_8
+     PRESCALER_DIVISION_BY_64
+     PRESCALER_DIVISION_BY_256
+     PRESCALER_DIVISION_BY_1024
+     EXTERNAL_CLK_SOURCE_FALLING_EDGE
+     EXTERNAL_CLK_SOURCE_RAISING_EDGE
+ */
 #define     PRESCALER           PRESCALER_DIVISION_BY_8
 
 

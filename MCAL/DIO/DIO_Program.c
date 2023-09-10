@@ -1,5 +1,5 @@
 /*
- *<<<<<<<<<<<    DIO_Program.c  >>>>>>>>>>>>
+ *<<<<<<<<<<<    DIO_Program.h   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
  *
  *  Author : Rashad
  *  Layer  : MCAL
@@ -27,7 +27,7 @@ void DIO_voidSetPinDirection (u8 Copy_u8PortNumber, u8 Copy_u8PinNumber, u8 Copy
     {
         switch(Copy_u8Direction)
         {
-            case INPUT :    switch(Copy_u8PortNumber)
+            case DIO_INPUT :    switch(Copy_u8PortNumber)
                             {
                                 case DIO_PORTA :    CLR_BIT( DDRA_REG ,Copy_u8PinNumber );    break;       
                                 case DIO_PORTB :    CLR_BIT( DDRB_REG ,Copy_u8PinNumber );    break;
@@ -36,7 +36,7 @@ void DIO_voidSetPinDirection (u8 Copy_u8PortNumber, u8 Copy_u8PinNumber, u8 Copy
                                 default    :                                                break;
                             }
                             break;
-            case OUTPUT :   switch(Copy_u8PortNumber)
+            case DIO_OUTPUT :   switch(Copy_u8PortNumber)
                             {
                                 case DIO_PORTA :    SET_BIT( DDRA_REG ,Copy_u8PinNumber );      break;
                                 case DIO_PORTB :    SET_BIT( DDRB_REG ,Copy_u8PinNumber );      break;
@@ -51,7 +51,7 @@ void DIO_voidSetPinDirection (u8 Copy_u8PortNumber, u8 Copy_u8PinNumber, u8 Copy
     }
 }
 
-void DIO_voidSetDIO_PORTDirection (u8 Copy_u8PortNumber, u8 Copy_u8Direction )
+void DIO_voidSetPortDirection (u8 Copy_u8PortNumber, u8 Copy_u8Direction )
 {
     /* i/p validation */
     if ( Copy_u8PortNumber > DIO_PORTD )
@@ -62,7 +62,7 @@ void DIO_voidSetDIO_PORTDirection (u8 Copy_u8PortNumber, u8 Copy_u8Direction )
     {
         switch(Copy_u8Direction)
         {
-            case INPUT :    switch(Copy_u8PortNumber)
+            case DIO_INPUT :    switch(Copy_u8PortNumber)
                             {
                                 case DIO_PORTA :    DDRA_REG = 0x00 ;   break;
                                 case DIO_PORTB :    DDRB_REG = 0x00 ;   break;
@@ -71,7 +71,7 @@ void DIO_voidSetDIO_PORTDirection (u8 Copy_u8PortNumber, u8 Copy_u8Direction )
                                 default    :                        break;
                             }
                             break;
-            case OUTPUT :   switch(Copy_u8PortNumber)
+            case DIO_OUTPUT :   switch(Copy_u8PortNumber)
                             {
                                 case DIO_PORTA :    DDRA_REG = 0xff ;   break;
                                 case DIO_PORTB :    DDRB_REG = 0xff ;   break;
@@ -90,7 +90,7 @@ void DIO_voidSetDIO_PORTDirection (u8 Copy_u8PortNumber, u8 Copy_u8Direction )
 void DIO_voidSetPinValue (u8 Copy_u8PortNumber, u8 Copy_u8PinNumber, u8 Copy_u8Value )
 {
         /* i/p validation */
-    if ( Copy_u8PortNumber > DIO_PORTD || Copy_u8PinNumber > PIN7 )
+    if ( Copy_u8PortNumber > DIO_PORTD || Copy_u8PinNumber > DIO_PIN7 )
     {
         // Do Nothing
     }
@@ -98,7 +98,7 @@ void DIO_voidSetPinValue (u8 Copy_u8PortNumber, u8 Copy_u8PinNumber, u8 Copy_u8V
     {
         switch(Copy_u8Value)
         {
-            case LOW :    switch(Copy_u8PortNumber)
+            case DIO_LOW :    switch(Copy_u8PortNumber)
                             {
                                 case DIO_PORTA :    CLR_BIT( PORTA_REG ,Copy_u8PinNumber );   break;
                                 case DIO_PORTB :    CLR_BIT( PORTB_REG ,Copy_u8PinNumber );   break;
@@ -107,7 +107,7 @@ void DIO_voidSetPinValue (u8 Copy_u8PortNumber, u8 Copy_u8PinNumber, u8 Copy_u8V
                                 default    :                                                break; 
                             }
                             break;
-            case HIGH :   switch(Copy_u8PortNumber)
+            case DIO_HIGH :   switch(Copy_u8PortNumber)
                             {
                                 case DIO_PORTA :    SET_BIT( PORTA_REG ,Copy_u8PinNumber );     break;
                                 case DIO_PORTB :    SET_BIT( PORTB_REG ,Copy_u8PinNumber );     break;
@@ -154,7 +154,7 @@ u8 DIO_u8GetPinValue (u8 Copy_u8PortNumber, u8 Copy_u8PinNumber )
 {
     u8 Local_u8Variable;
     /* i/p validation */
-    if ( Copy_u8PortNumber > DIO_PORTD || Copy_u8PinNumber > PIN7 )
+    if ( Copy_u8PortNumber > DIO_PORTD || Copy_u8PinNumber > DIO_PIN7 )
     {
         // Do Nothing
     }
@@ -199,7 +199,7 @@ u8 DIO_u8GetPortValue (u8 Copy_u8PortNumber )
 void DIO_voidTogglePinValue (u8 Copy_u8PortNumber, u8 Copy_u8PinNumber )
 {
     /* i/p validation */
-    if ( Copy_u8PortNumber > DIO_PORTD || Copy_u8PinNumber > PIN7 )
+    if ( Copy_u8PortNumber > DIO_PORTD || Copy_u8PinNumber > DIO_PIN7 )
     {
         // Do Nothing
     }

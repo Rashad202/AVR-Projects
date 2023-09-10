@@ -1,3 +1,11 @@
+/*
+ *<<<<<<<<<<    SPI_config.h     >>>>>>>>>>
+ *
+ *  Author : Rashad
+ *  Layer  : MCAL
+ *  SWC    : SPI
+ *
+ */
 #ifndef SPI_CONFIG_H
 #define SPI_CONFIG_H
 

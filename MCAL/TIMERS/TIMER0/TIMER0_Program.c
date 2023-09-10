@@ -1,5 +1,13 @@
-#include "../../LIB/STD_TYPES.h"
-#include "../../LIB/BIT_MATH.h"
+/*
+ *<<<<<<<<<<<    TIMER_program.c   >>>>>>>>>>>>
+ *
+ *  Author : Rashad
+ *  Layer  : MCAL
+ *  SWC    : Timer
+ *
+ */
+#include "../../../LIB/STD_TYPES.h"
+#include "../../../LIB/BIT_MATH.h"
 /* Include My own Header Files*/
 #include "TIMER0_Interface.h"
 #include "TIMER0_Private.h"
@@ -17,20 +25,20 @@ void TIMER0_voidInit (void)
 
 /*         TIMER0 Mode Selection        */
     #if (MODE == NORMAL_OVF)                             // OVF Normal Mode of Timer/Counter0
-        CLEAR_BIT(TCCR0_REG,TIMER0_TCCR0_WGM00);
-        CLEAR_BIT(TCCR0_REG,TIMER0_TCCR0_WGM01);
+        CLR_BIT(TCCR0_REG,TIMER0_TCCR0_WGM00);
+        CLR_BIT(TCCR0_REG,TIMER0_TCCR0_WGM01);
 		SET_BIT(TIMSK_REG,TIMER0_TIMSK_TOIE0);          // Enable T0 OVF Interrupt [PIE].        
 
     #elif (MODE == PWM_PHASECORRECT)                     // PWM_Phase Correct Mode of Timer/Counter0
         SET_BIT(TCCR0_REG,TIMER0_TCCR0_WGM00);
-        CLEAR_BIT(TCCR0_REG,TIMER0_TCCR0_WGM01);
+        CLR_BIT(TCCR0_REG,TIMER0_TCCR0_WGM01);
         
         /*          OC0 Mode Selection          */
         #if ( OC0_MODE == DISCONNECTED )
-            CLEAR_BIT(TCCR0_REG,TIMER0_TCCR0_COM00);
-            CLEAR_BIT(TCCR0_REG,TIMER0_TCCR0_COM01);
+            CLR_BIT(TCCR0_REG,TIMER0_TCCR0_COM00);
+            CLR_BIT(TCCR0_REG,TIMER0_TCCR0_COM01);
         #elif ( OC0_MODE == SETonCOMPdownCounting_CLEARonCOMPupCounting )
-            CLEAR_BIT(TCCR0_REG,TIMER0_TCCR0_COM00);
+            CLR_BIT(TCCR0_REG,TIMER0_TCCR0_COM00);
             SET_BIT(TCCR0_REG,TIMER0_TCCR0_COM01);
         #elif ( OC0_MODE == SETonCOMPupCounting_CLEARonCOMPdownCounting )
             SET_BIT(TCCR0_REG,TIMER0_TCCR0_COM00);
@@ -40,7 +48,7 @@ void TIMER0_voidInit (void)
         #endif
 
     #elif (MODE == CTC)                                  // CTC Mode of Timer/Counter0
-        CLEAR_BIT(TCCR0_REG,TIMER0_TCCR0_WGM00);
+        CLR_BIT(TCCR0_REG,TIMER0_TCCR0_WGM00);
         SET_BIT(TCCR0_REG,TIMER0_TCCR0_WGM01);
 		SET_BIT(TIMSK_REG,TIMER0_TIMSK_OCIE0);          // Enable T0 CTC Interrupt [PIE]. 
 
@@ -50,10 +58,10 @@ void TIMER0_voidInit (void)
 
         /*          OC0 Mode Selection          */
         #if ( OC0_MODE == DISCONNECTED )
-            CLEAR_BIT(TCCR0_REG,TIMER0_TCCR0_COM00);
-            CLEAR_BIT(TCCR0_REG,TIMER0_TCCR0_COM01);
+            CLR_BIT(TCCR0_REG,TIMER0_TCCR0_COM00);
+            CLR_BIT(TCCR0_REG,TIMER0_TCCR0_COM01);
         #elif ( OC0_MODE == SETonTOP_CLEARonCOMPARE )
-            CLEAR_BIT(TCCR0_REG,TIMER0_TCCR0_COM00);
+            CLR_BIT(TCCR0_REG,TIMER0_TCCR0_COM00);
             SET_BIT(TCCR0_REG,TIMER0_TCCR0_COM01);
         #elif ( OC0_MODE == SETonCOMPARE_CLEARonTOP )
             SET_BIT(TCCR0_REG,TIMER0_TCCR0_COM00);
@@ -71,31 +79,31 @@ void TIMER0_voidInit (void)
     TCCR0_REG = ( TCCR0_REG & 0b11111000 );              // Clear Prescaller 
 
     #if( PRESCALER == NO_CLK_SOURCE_TIMER_STOPED )          
-        CLEAR_BIT(TCCR0_REG,TIMER0_TCCR0_CS00);
-        CLEAR_BIT(TCCR0_REG,TIMER0_TCCR0_CS01);
-        CLEAR_BIT(TCCR0_REG,TIMER0_TCCR0_CS02);
+        CLR_BIT(TCCR0_REG,TIMER0_TCCR0_CS00);
+        CLR_BIT(TCCR0_REG,TIMER0_TCCR0_CS01);
+        CLR_BIT(TCCR0_REG,TIMER0_TCCR0_CS02);
     #elif ( PRESCALER == NOT_USE_PRESCALER )
         SET_BIT(TCCR0_REG,TIMER0_TCCR0_CS00);
-        CLEAR_BIT(TCCR0_REG,TIMER0_TCCR0_CS01);
-        CLEAR_BIT(TCCR0_REG,TIMER0_TCCR0_CS02);
+        CLR_BIT(TCCR0_REG,TIMER0_TCCR0_CS01);
+        CLR_BIT(TCCR0_REG,TIMER0_TCCR0_CS02);
     #elif ( PRESCALER == PRESCALER_DIVISION_BY_8 )
-        CLEAR_BIT(TCCR0_REG,TIMER0_TCCR0_CS00);
+        CLR_BIT(TCCR0_REG,TIMER0_TCCR0_CS00);
         SET_BIT(TCCR0_REG,TIMER0_TCCR0_CS01);
-        CLEAR_BIT(TCCR0_REG,TIMER0_TCCR0_CS02);
+        CLR_BIT(TCCR0_REG,TIMER0_TCCR0_CS02);
     #elif ( PRESCALER == PRESCALER_DIVISION_BY_64 )
         SET_BIT(TCCR0_REG,TIMER0_TCCR0_CS00);
         SET_BIT(TCCR0_REG,TIMER0_TCCR0_CS01);
-        CLEAR_BIT(TCCR0_REG,TIMER0_TCCR0_CS02);
+        CLR_BIT(TCCR0_REG,TIMER0_TCCR0_CS02);
     #elif ( PRESCALER == PRESCALER_DIVISION_BY_256 )
-        CLEAR_BIT(TCCR0_REG,TIMER0_TCCR0_CS00);
-        CLEAR_BIT(TCCR0_REG,TIMER0_TCCR0_CS01);
+        CLR_BIT(TCCR0_REG,TIMER0_TCCR0_CS00);
+        CLR_BIT(TCCR0_REG,TIMER0_TCCR0_CS01);
         SET_BIT(TCCR0_REG,TIMER0_TCCR0_CS02);
     #elif ( PRESCALER == PRESCALER_DIVISION_BY_1024 )
         SET_BIT(TCCR0_REG,TIMER0_TCCR0_CS00);
-        CLEAR_BIT(TCCR0_REG,TIMER0_TCCR0_CS01);
+        CLR_BIT(TCCR0_REG,TIMER0_TCCR0_CS01);
         SET_BIT(TCCR0_REG,TIMER0_TCCR0_CS02);
     #elif ( PRESCALER == EXTERNAL_CLK_SOURCE_FALLING_EDGE )
-        CLEAR_BIT(TCCR0_REG,TIMER0_TCCR0_CS00);
+        CLR_BIT(TCCR0_REG,TIMER0_TCCR0_CS00);
         SET_BIT(TCCR0_REG,TIMER0_TCCR0_CS01);
         SET_BIT(TCCR0_REG,TIMER0_TCCR0_CS02);
     #elif ( PRESCALER == EXTERNAL_CLK_SOURCE_RAISING_EDGE )
@@ -153,7 +161,7 @@ void TIMER0_voidSetCallBack_CTC_andRequiredTime_ms (void (*Local_PointerToFuncti
 
 void TIMER0_voidSetBusyWait_ms ( u32 Copy_u32Time_ms )
 {
-    CLEAR_BIT(TIMSK_REG,TIMER0_TIMSK_OCIE0);              // Disable T0 CTC Interrupt [PIE].
+    CLR_BIT(TIMSK_REG,TIMER0_TIMSK_OCIE0);              // Disable T0 CTC Interrupt [PIE].
     u32 Counter_CTC = 0 ;
     TIMER0_voidSetCompareMatchValue (200);
     Counter_CTC = ( Copy_u32Time_ms * 1000UL ) /200 ;     // Counter_CTC = (Required Time(ms) * 1000) / (Compare Match Value)

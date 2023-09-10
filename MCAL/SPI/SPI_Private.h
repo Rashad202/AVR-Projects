@@ -1,14 +1,21 @@
+/*
+ *<<<<<<<<<<    SPI_private.h     >>>>>>>>>>
+ *
+ *  Author : Rashad
+ *  Layer  : MCAL
+ *  SWC    : SPI
+ *
+ */
 #ifndef SPI_PRIVATE_H
 #define SPI_PRIVATE_H
 
 
-/*============     [SPI] Registers     ============*/
-#define     SPCR_REG       (*(volatile u8 *)(0x2D))        // SPI Control Register – SPCR
-#define     SPSR_REG       (*(volatile u8 *)(0x2E))        // SPI Status Register – SPSR
+/*============     [SPI] Register     ============*/
 #define     SPDR_REG       (*(volatile u8 *)(0x2F))        // SPI Data Register – SPDR 
 
 
 /*=======   SPI [SPCR] BITS  ========*/
+#define     SPCR_REG       (*(volatile u8 *)(0x2D))        // SPI Control Register – SPCR
 #define     SPCR_SPR0                0             // Bits 0 – SPR0: SPI Clock Rate Select 1 and 0
 #define     SPCR_SPR1                1             // Bits 1 – SPR1: SPI Clock Rate Select 1 and 0
 #define     SPCR_CPHA                2             // Bit 2 – CPHA: Clock Phase
@@ -20,6 +27,7 @@
 
 
 /*=======   SPI [SPSR] BITS  ========*/
+#define     SPSR_REG       (*(volatile u8 *)(0x2E))        // SPI Status Register – SPSR
 #define     SPSR_SPI2X               0             // Bit 0 – SPI2X: Double SPI Speed Bit
 #define     SPSR_WCOL                6             // Bit 6 – WCOL: Write COLlision Flag
 #define     SPSR_SPIF                7             // Bit 7 – SPIF: SPI Interrupt Flag

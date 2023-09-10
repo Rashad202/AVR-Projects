@@ -1,17 +1,22 @@
+/*
+ *<<<<<<<<<<<    USART_Private.h   >>>>>>>>>>>>
+ *
+ *  Author : Rashad
+ *  Layer  : MCAL
+ *  SWC    : USART
+ *
+ */
 #ifndef USART_PRIVATE_H
 #define USART_PRIVATE_H
 
 
-/*============     [USART] Registers     ============*/
+/*============     [USART]      ============*/
 #define     UDR_REG         (*(volatile u8 *)(0x2C))        // USART I/O Data Register – UDR
+
+
+/*=======   USART [UCSRA]  =======*/
 #define     UCSRA_REG       (*(volatile u8 *)(0x2B))        // USART Control and Status Register A – UCSRA
-#define     UCSRB_REG       (*(volatile u8 *)(0x2A))        // USART Control and Status Register B – UCSRA 
-#define     UCSRC_REG       (*(volatile u8 *)(0x40))        // USART Control and Status Register C – UCSRA 
-#define     UBRRL_REG       (*(volatile u8 *)(0x29))        // USART Baud Rate Registers – UBRRL 
-#define     UBRRH_REG       (*(volatile u8 *)(0x40))        // USART Baud Rate Registers – UBRRH
 
-
-/*=======   USART [UCSRA] BITS  =======*/
 #define     UCSRA_MPCM                0             // Bit 0 – MPCM: Multi-processor Communication Mode
 #define     UCSRA_U2X                 1             // Bit 1 – U2X: Double the USART Transmission Speed
 #define     UCSRA_PE                  2             // Bit 2 – PE: Parity Error
@@ -22,7 +27,9 @@
 #define     UCSRA_RXC                 7             // Bit 7 – RXC: USART Receive Complete
 
 
-/*=======   USART [UCSRB] BITS  =======*/
+/*=======   USART [UCSRB]  =======*/
+#define     UCSRB_REG       (*(volatile u8 *)(0x2A))        // USART Control and Status Register B – UCSRA
+
 #define     UCSRB_TXB8                0             // Bit 0 – TXB8: Transmit Data Bit 8
 #define     UCSRB_RXB8                1             // Bit 1 – RXB8: Receive Data Bit 8
 #define     UCSRB_UCSZ2               2             // Bit 2 – UCSZ2: Character Size
@@ -33,7 +40,9 @@
 #define     UCSRB_RXCIE               7             // Bit 7 – RXCIE: RX Complete Interrupt Enable
 
 
-/*=======   USART [UCSRC] BITS  =======*/
+/*=======   USART [UCSRC]  =======*/
+#define     UCSRC_REG       (*(volatile u8 *)(0x40))        // USART Control and Status Register C – UCSRA
+
 #define     UCSRC_UCPOL               0             // Bit 0 – UCPOL: Clock Polarity
 #define     UCSRC_UCSZ0               1             // Bit 1 – UCSZ0: Character Size
 #define     UCSRC_UCSZ1               2             // Bit 2 – UCSZ1: Character Size
@@ -45,7 +54,9 @@
 
 
 /*=======   USART [UBRRH] BITS  =======*/
-#define UBRRH_URSEL                   7             // Bit 7 – URSEL: Register Select
+#define 	UBRRH_URSEL                   7             // Bit 7 – URSEL: Register Select
+#define     UBRRL_REG       (*(volatile u8 *)(0x29))        // USART Baud Rate Registers – UBRRL
+#define     UBRRH_REG       (*(volatile u8 *)(0x40))        // USART Baud Rate Registers – UBRRH
 
 
 #define NULL                  (void*)(0)

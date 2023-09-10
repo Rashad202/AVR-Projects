@@ -20,29 +20,25 @@ u8 KPAD_Au8KeysArr[KPAD_ROWS_NUM][KPAD_COLUMNS_NUM] = KPAD_KEYS ;
 
 void KPAD_voidInit (void)
 {
-    /* Configer The Direction of Coloums Pins as Output */
-    DIO_voidSetPinDirection (KPAD_PORT,KPAD_C0_PIN,OUTPUT);
-    DIO_voidSetPinDirection (KPAD_PORT,KPAD_C1_PIN,OUTPUT);
-    DIO_voidSetPinDirection (KPAD_PORT,KPAD_C2_PIN,OUTPUT);
-    DIO_voidSetPinDirection (KPAD_PORT,KPAD_C3_PIN,OUTPUT);
+    /* Configer The Direction of Coloums Pins as DIO_OUTPUT */
+    DIO_voidSetPinDirection (KPAD_PORT,KPAD_C0_PIN,DIO_OUTPUT);
+    DIO_voidSetPinDirection (KPAD_PORT,KPAD_C1_PIN,DIO_OUTPUT);
+    DIO_voidSetPinDirection (KPAD_PORT,KPAD_C2_PIN,DIO_OUTPUT);
+    DIO_voidSetPinDirection (KPAD_PORT,KPAD_C3_PIN,DIO_OUTPUT);
 
-    /* Configer The Direction of Rows Pins as Input */
-    DIO_voidSetPinDirection (KPAD_PORT,KPAD_R0_PIN,INPUT);
-    DIO_voidSetPinDirection (KPAD_PORT,KPAD_R1_PIN,INPUT);
-    DIO_voidSetPinDirection (KPAD_PORT,KPAD_R2_PIN,INPUT);
-    DIO_voidSetPinDirection (KPAD_PORT,KPAD_R3_PIN,INPUT);
+    /* Configer The Direction of Rows Pins as DIO_INPUT */
+    DIO_voidSetPinDirection (KPAD_PORT,KPAD_R0_PIN,DIO_INPUT);
+    DIO_voidSetPinDirection (KPAD_PORT,KPAD_R1_PIN,DIO_INPUT);
+    DIO_voidSetPinDirection (KPAD_PORT,KPAD_R2_PIN,DIO_INPUT);
+    DIO_voidSetPinDirection (KPAD_PORT,KPAD_R3_PIN,DIO_INPUT);
 
-    /* Activate Pull-Up Res in Pins of Rows */
-    DIO_voidConfig_Pull_Up_Pin (KPAD_PORT,KPAD_R0_PIN,ON);
-    DIO_voidConfig_Pull_Up_Pin (KPAD_PORT,KPAD_R1_PIN,ON);
-    DIO_voidConfig_Pull_Up_Pin (KPAD_PORT,KPAD_R2_PIN,ON);
-    DIO_voidConfig_Pull_Up_Pin (KPAD_PORT,KPAD_R3_PIN,ON);
+
 
     /* Deactivate Coloum Pins  */      
-    DIO_voidSetPinValue (KPAD_PORT,KPAD_C0_PIN,HIGH);
-    DIO_voidSetPinValue (KPAD_PORT,KPAD_C1_PIN,HIGH);
-    DIO_voidSetPinValue (KPAD_PORT,KPAD_C2_PIN,HIGH);
-    DIO_voidSetPinValue (KPAD_PORT,KPAD_C3_PIN,HIGH); 
+    DIO_voidSetPinValue (KPAD_PORT,KPAD_C0_PIN,DIO_HIGH);
+    DIO_voidSetPinValue (KPAD_PORT,KPAD_C1_PIN,DIO_HIGH);
+    DIO_voidSetPinValue (KPAD_PORT,KPAD_C2_PIN,DIO_HIGH);
+    DIO_voidSetPinValue (KPAD_PORT,KPAD_C3_PIN,DIO_HIGH);
 }
 
 
@@ -59,7 +55,7 @@ u8   KPAD_u8GetPressedKey (void)
     for ( Local_u8ColumnsIter = 0 ; Local_u8ColumnsIter < KPAD_COLUMNS_NUM ; Local_u8ColumnsIter ++ )
     {
         /* Active the current Column */
-        DIO_voidSetPinValue ( KPAD_PORT , KPAD_Au8ColumnsArr[Local_u8ColumnsIter] , LOW );
+        DIO_voidSetPinValue ( KPAD_PORT , KPAD_Au8ColumnsArr[Local_u8ColumnsIter] , DIO_LOW );
 
         for ( Local_u8RowsIter = 0 ; Local_u8RowsIter < KPAD_ROWS_NUM ; Local_u8RowsIter ++ )
         {
@@ -74,7 +70,7 @@ u8   KPAD_u8GetPressedKey (void)
                 /* More Checking again for Debounsing */
                 while ( Local_u8PinValue == 0 )
                 {
-                    /* Get pressed Key Value when i make sure that the low state is stable  */
+                    /* Get pressed Key Value when i make sure that the DIO_LOW state is stable  */
                     Local_u8PressedKey = KPAD_Au8KeysArr[Local_u8RowsIter][Local_u8ColumnsIter] ;
                     /* Read Row Pin again for sure for Debounsing and exit while loop when change at pressed button 
                     whithout it the program will not extern about while loop */
@@ -86,7 +82,7 @@ u8   KPAD_u8GetPressedKey (void)
             }
         }
         /* Active the current Column */
-        DIO_voidSetPinValue ( KPAD_PORT , KPAD_Au8ColumnsArr[Local_u8ColumnsIter] , HIGH );
+        DIO_voidSetPinValue ( KPAD_PORT , KPAD_Au8ColumnsArr[Local_u8ColumnsIter] , DIO_HIGH );
         if ( Local_u8Flag == 1 )
         {
             break;

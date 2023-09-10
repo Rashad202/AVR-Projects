@@ -1,5 +1,5 @@
 /*
- *<<<<<<<<<<    ADC_Config.h    >>>>>>>>>>>
+ *<<<<<<<<<<<<    ADC_Program.h   >>>>>>>>>>>>>>
  *
  *  Author : Rashad
  *  Layer  : MCAL
@@ -9,72 +9,76 @@
 #ifndef ADC_CONFIG_H
 #define ADC_CONFIG_H
 
-/*       Select Reference Voltage       */
+/*
+ *        Select Reference Voltage
 
 #define     AREF                         0
 #define     AVCC                         1
 #define     RESERVED                     2
 #define     INTERNAL                     3
-
+ */
 
 #define     REFERENCE_VOLTAGE             AVCC
 
 
-/*     Select RIGHT or LEFT Adjust      */
-#define     RIGHT                        0
-#define     LEFT                         1
-
+/*
+	Select RIGHT or LEFT Adjust
+	RIGHT
+	LEFT
+ */
 
 #define     ADJUST                        RIGHT
 
-/*        ADC ENABLE or DISABLE         */
-
-#define     DISABLE                      0
-#define     ENABLE                       1
-
+/*
+	ADC ENABLE or DISABLE
+	DISABLE
+	ENABLE
+ */
 
 #define     ADEN                         ENABLE
 
-/*    AUTO Trigger Enable or Disable    */
-#define     DISABLE                      0
-#define     ENABLE                       1
-
+/*
+	AUTO Trigger Enable or Disable
+	DISABLE
+	ENABLE
+ */
 
 #define     ADATE                        DISABLE
 
-
-/*       ADC Auto Trigger Source        */
-#define  Free_Running_Mode               0
-#define  Analog_Comparator               1
-#define  External_Interrupt_Request_0    2
-#define  Timer_Counter0_Compare_Match    3
-#define  Timer_Counter0_Overflow         4
-#define  Timer_Counter1_Compare_MatchB   5
-#define  Timer_Counter1_Overflow         6
-#define  Timer_Counter1_Capture_Event    7
-
+/*
+	ADC Auto Trigger Source
+	Free_Running_Mode
+	Analog_Comparator
+	External_Interrupt_Request_0
+	Timer_Counter0_Compare_Match
+	Timer_Counter0_Overflow
+	Timer_Counter1_Compare_MatchB
+	Timer_Counter1_Overflow
+	Timer_Counter1_Capture_Event
+ */
 
 #define  AUTO_TRIGGER_SOURCE     Free_Running_Mode
 
-/*    ADC Interrupt Enable or Disable   */
-#define     DISABLE                      0
-#define     ENABLE                       1
-
+/*
+    ADC Interrupt Enable or Disable
+    DISABLE
+    ENABLE
+ */
 
 #define     ADIE                         DISABLE
 
-/*        ADC Prescaler Selection        */
+/*
+   ADC Prescaler Selection
 
-#define     NOT_USE_PRESCALER             0
-#define     PRESCALER_DIVISION_BY_2       2
-#define     PRESCALER_DIVISION_BY_4       4
-#define     PRESCALER_DIVISION_BY_8       8
-#define     PRESCALER_DIVISION_BY_16      16
-#define     PRESCALER_DIVISION_BY_32      32
-#define     PRESCALER_DIVISION_BY_64      64
-#define     PRESCALER_DIVISION_BY_128     128
-
-
+     NOT_USE_PRESCALER
+     PRESCALER_DIVISION_BY_2
+     PRESCALER_DIVISION_BY_4
+     PRESCALER_DIVISION_BY_8
+     PRESCALER_DIVISION_BY_16
+     PRESCALER_DIVISION_BY_32
+     PRESCALER_DIVISION_BY_64
+     PRESCALER_DIVISION_BY_128
+ */
 
 #define     PRESCALER           PRESCALER_DIVISION_BY_128
 

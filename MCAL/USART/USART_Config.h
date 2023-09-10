@@ -4,31 +4,41 @@
 #define     CPU_CLK             8000000
 #define     BAUD_RATE           9600
 
+/*
+ Set Data Size
 
-/*   Select Normal or Double Speed Transsmition  */
-#define     DOUBBLE_SPEED           0
-#define     NORMAL_SPEED            1
+   DATA_SIZE_5_BIT
+   DATA_SIZE_6_BIT
+   DATA_SIZE_7_BIT
+   DATA_SIZE_8_BIT
+   DATA_SIZE_9_BIT
+ */
+#define DATA_SIZE				DATA_SIZE_8_BIT
 
+/*
+     Select Normal or Double Speed Transsmition
+     DOUBBLE_SPEED
+     NORMAL_SPEED
+*/
 
 #define     SPEED            DOUBBLE_SPEED
 
 
 
 
-/*    Select Parity Mode EVEN , ODD , DISABLE    */
-#define     DISABLE                  0
-#define     EVEN                     1
-#define     ODD                      2
+/*
+     Select Parity Mode
+     EVEN
+     ODD
+     DISABLE
 
+*/
 
 #define     Parity_Mode             DISABLE
 
 
 
 /*        Select STOP BIT  { ONE , TWO }         */
-
-#define     ONE                      0
-#define     TWO                      1
 
 #define     STOP_BIT                ONE
 

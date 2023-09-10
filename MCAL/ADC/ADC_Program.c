@@ -1,15 +1,18 @@
 /*
- *<<<<<<<<<<    ADC_Program.c    >>>>>>>>>>>
+ *<<<<<<<<<<<<    ADC_Program.h   >>>>>>>>>>>>>>
  *
  *  Author : Rashad
  *  Layer  : MCAL
  *  SWC    : ADC
  *
  */
+
 #include "../../LIB/STD_TYPES.h"
 #include "../../LIB/BIT_MATH.h"
+
 /* Include Header Files From MCAL */
 #include "../DIO/DIO_Interface.h"
+
 /* Include My own Header Files*/
 #include "ADC_Interface.h"
 #include "ADC_Private.h"
@@ -27,86 +30,86 @@ void ADC_voidInit (void)
 /*       Select Reference Voltage       */ 
 
     #if ( REFERENCE_VOLTAGE == AREF )
-        CLEAR_BIT(ADMUX_REG,6);
-        CLEAR_BIT(ADMUX_REG,7);
+        CLR_BIT(ADMUX_REG,ADMUX_REFS0);
+        CLR_BIT(ADMUX_REG,ADMUX_REFS1);
     #elif ( REFERENCE_VOLTAGE == AVCC )
-        SET_BIT(ADMUX_REG,6);
-        CLEAR_BIT(ADMUX_REG,7);
+      SET_BIT(ADMUX_REG,ADMUX_REFS0);
+        CLR_BIT(ADMUX_REG,ADMUX_REFS1);
     #elif ( REFERENCE_VOLTAGE == INTERNAL )
-        SET_BIT(ADMUX_REG,6);
-        SET_BIT(ADMUX_REG,7);
+      SET_BIT(ADMUX_REG,ADMUX_REFS0);
+      SET_BIT(ADMUX_REG,ADMUX_REFS1);
     #else
-        CLEAR_BIT(ADMUX_REG,6);
-        SET_BIT(ADMUX_REG,7);  
+        CLR_BIT(ADMUX_REG,ADMUX_REFS0);
+      SET_BIT(ADMUX_REG,ADMUX_REFS1);
     #endif
 
 /*     Select RIGHT or LEFT Adjust      */
 
     #if ( ADJUST == RIGHT )
-        CLEAR_BIT(ADMUX_REG,5);
+        CLR_BIT(ADMUX_REG,ADMUX_ADLAR);
     #elif ( ADJUST == LEFT )
-        SET_BIT(ADMUX_REG,5);
+      SET_BIT(ADMUX_REG,ADMUX_ADLAR);
     #endif
 
 /*        ADC Enable or Disable         */
 
     #if ( ADEN == ENABLE )
-        SET_BIT(ADCSRA_REG,7);  
+      SET_BIT(ADCSRA_REG,ADCSRA_ADEN);
     #elif ( ADEN == DISABLE )
-        CLEAR_BIT(ADCSRA_REG,7); 
+        CLR_BIT(ADCSRA_REG,ADCSRA_ADEN);
     #endif
 
 /*    AUTO Trigger Enable or Disable    */
 
     #if ( ADATE == ENABLE )
-        SET_BIT(ADCSRA_REG,5);
+      SET_BIT(ADCSRA_REG,ADCSRA_ADATE);
            
             /*       ADC Auto Trigger Source        */
             
         #if( AUTO_TRIGGER_SOURCE == Free_Running_Mode )
-            CLEAR_BIT(SFIOR_REG,5);
-            CLEAR_BIT(SFIOR_REG,6);
-            CLEAR_BIT(SFIOR_REG,7);
+            CLR_BIT(SFIOR_REG,SFIOR_ADTS0);
+            CLR_BIT(SFIOR_REG,SFIOR_ADTS1);
+            CLR_BIT(SFIOR_REG,SFIOR_ADTS2);
         #elif ( AUTO_TRIGGER_SOURCE == Analog_Comparator )
-              SET_BIT(SFIOR_REG,5);
-            CLEAR_BIT(SFIOR_REG,6);
-            CLEAR_BIT(SFIOR_REG,7);    
+            SET_BIT(SFIOR_REG,SFIOR_ADTS0);
+            CLR_BIT(SFIOR_REG,SFIOR_ADTS1);
+            CLR_BIT(SFIOR_REG,SFIOR_ADTS2);
         #elif ( AUTO_TRIGGER_SOURCE == External_Interrupt_Request_0 )
-            CLEAR_BIT(SFIOR_REG,5);
-              SET_BIT(SFIOR_REG,6);
-            CLEAR_BIT(SFIOR_REG,7);
+            CLR_BIT(SFIOR_REG,SFIOR_ADTS0);
+            SET_BIT(SFIOR_REG,SFIOR_ADTS1);
+            CLR_BIT(SFIOR_REG,SFIOR_ADTS2);
         #elif ( AUTO_TRIGGER_SOURCE == Timer_Counter0_Compare_Match )
-              SET_BIT(SFIOR_REG,5);
-              SET_BIT(SFIOR_REG,6);
-            CLEAR_BIT(SFIOR_REG,7);
+            SET_BIT(SFIOR_REG,SFIOR_ADTS0);
+            SET_BIT(SFIOR_REG,SFIOR_ADTS1);
+            CLR_BIT(SFIOR_REG,SFIOR_ADTS2);
         #elif ( AUTO_TRIGGER_SOURCE == Timer_Counter0_Overflow )
-            CLEAR_BIT(SFIOR_REG,5);
-            CLEAR_BIT(SFIOR_REG,6);
-              SET_BIT(SFIOR_REG,7);
+            CLR_BIT(SFIOR_REG,SFIOR_ADTS0);
+            CLR_BIT(SFIOR_REG,SFIOR_ADTS1);
+            SET_BIT(SFIOR_REG,SFIOR_ADTS2);
         #elif ( AUTO_TRIGGER_SOURCE == Timer_Counter1_Compare_MatchB )
-              SET_BIT(SFIOR_REG,5);
-            CLEAR_BIT(SFIOR_REG,6);
-              SET_BIT(SFIOR_REG,7);
+            SET_BIT(SFIOR_REG,SFIOR_ADTS0);
+            CLR_BIT(SFIOR_REG,SFIOR_ADTS1);
+            SET_BIT(SFIOR_REG,SFIOR_ADTS2);
         #elif ( AUTO_TRIGGER_SOURCE == Timer_Counter1_Overflow )
-            CLEAR_BIT(SFIOR_REG,5);
-              SET_BIT(SFIOR_REG,6);
-              SET_BIT(SFIOR_REG,7);
+            CLR_BIT(SFIOR_REG,SFIOR_ADTS0);
+            SET_BIT(SFIOR_REG,SFIOR_ADTS1);
+            SET_BIT(SFIOR_REG,SFIOR_ADTS2);
         #elif ( AUTO_TRIGGER_SOURCE == Timer_Counter1_Capture_Event )
-              SET_BIT(SFIOR_REG,5);
-              SET_BIT(SFIOR_REG,6);
-              SET_BIT(SFIOR_REG,7);
+            SET_BIT(SFIOR_REG,SFIOR_ADTS0);
+            SET_BIT(SFIOR_REG,SFIOR_ADTS1);
+            SET_BIT(SFIOR_REG,SFIOR_ADTS2);
         #endif
 
     #elif ( ADATE == DISABLE )
-        CLEAR_BIT(ADCSRA_REG,5); 
+        CLR_BIT(ADCSRA_REG,ADCSRA_ADATE);
     #endif
 
 /*    ADC Interrupt Enable or Disable   */
 
     #if ( ADIE == ENABLE )          // work with Interrupt
-        SET_BIT(ADCSRA_REG,3);  
+        SET_BIT(ADCSRA_REG,ADCSRA_ADIE);
     #elif ( ADIE == DISABLE )       // work with Polling
-        CLEAR_BIT(ADCSRA_REG,3); 
+        CLR_BIT(ADCSRA_REG,ADCSRA_ADIE);
     #endif
 
 /*       ADC Prescaler Selection        */
@@ -117,33 +120,33 @@ void ADC_voidInit (void)
     #if( PRESCALER == NOT_USE_PRESCALER )
         // NOTHING
     #elif ( PRESCALER == PRESCALER_DIVISION_BY_2 )
-          SET_BIT(ADCSRA_REG,0);
-        CLEAR_BIT(ADCSRA_REG,1);
-        CLEAR_BIT(ADCSRA_REG,2);    
+        SET_BIT(ADCSRA_REG,ADCSRA_ADPS0);
+        CLR_BIT(ADCSRA_REG,ADCSRA_ADPS1);
+        CLR_BIT(ADCSRA_REG,ADCSRA_ADPS2);
     #elif ( PRESCALER == PRESCALER_DIVISION_BY_4 )
-        CLEAR_BIT(ADCSRA_REG,0);
-          SET_BIT(ADCSRA_REG,1);
-        CLEAR_BIT(ADCSRA_REG,2);
+        CLR_BIT(ADCSRA_REG,ADCSRA_ADPS0);
+        SET_BIT(ADCSRA_REG,ADCSRA_ADPS1);
+        CLR_BIT(ADCSRA_REG,ADCSRA_ADPS2);
     #elif ( PRESCALER == PRESCALER_DIVISION_BY_8 )
-          SET_BIT(ADCSRA_REG,0);
-          SET_BIT(ADCSRA_REG,1);
-        CLEAR_BIT(ADCSRA_REG,2);
+        SET_BIT(ADCSRA_REG,ADCSRA_ADPS0);
+        SET_BIT(ADCSRA_REG,ADCSRA_ADPS1);
+        CLR_BIT(ADCSRA_REG,ADCSRA_ADPS2);
     #elif ( PRESCALER == PRESCALER_DIVISION_BY_16 )
-        CLEAR_BIT(ADCSRA_REG,0);
-        CLEAR_BIT(ADCSRA_REG,1);
-          SET_BIT(ADCSRA_REG,2);
+        CLR_BIT(ADCSRA_REG,ADCSRA_ADPS0);
+        CLR_BIT(ADCSRA_REG,ADCSRA_ADPS1);
+        SET_BIT(ADCSRA_REG,ADCSRA_ADPS2);
     #elif ( PRESCALER == PRESCALER_DIVISION_BY_32 )
-          SET_BIT(ADCSRA_REG,0);
-        CLEAR_BIT(ADCSRA_REG,1);
-          SET_BIT(ADCSRA_REG,2);
+        SET_BIT(ADCSRA_REG,ADCSRA_ADPS0);
+        CLR_BIT(ADCSRA_REG,ADCSRA_ADPS1);
+        SET_BIT(ADCSRA_REG,ADCSRA_ADPS2);
     #elif ( PRESCALER == PRESCALER_DIVISION_BY_64 )
-        CLEAR_BIT(ADCSRA_REG,0);
-          SET_BIT(ADCSRA_REG,1);
-          SET_BIT(ADCSRA_REG,2);
+        CLR_BIT(ADCSRA_REG,ADCSRA_ADPS0);
+        SET_BIT(ADCSRA_REG,ADCSRA_ADPS1);
+        SET_BIT(ADCSRA_REG,ADCSRA_ADPS2);
     #elif ( PRESCALER == PRESCALER_DIVISION_BY_128 )
-          SET_BIT(ADCSRA_REG,0);
-          SET_BIT(ADCSRA_REG,1);
-          SET_BIT(ADCSRA_REG,2);
+        SET_BIT(ADCSRA_REG,ADCSRA_ADPS0);
+        SET_BIT(ADCSRA_REG,ADCSRA_ADPS1);
+        SET_BIT(ADCSRA_REG,ADCSRA_ADPS2);
     #endif
 
 }
@@ -172,7 +175,7 @@ u16 ADC_u16ReadSynchronus ( u8 Copy_u8ChannelNumber )
     #if ( ADATE == ENABLE )
         // Start Conversion When Triggering Occures.
     #elif ( ADATE == DISABLE )
-        SET_BIT(ADCSRA_REG,6);  
+      SET_BIT(ADCSRA_REG,ADCSRA_ADSC);
     #endif
     
     // work with Interrupt
@@ -183,7 +186,7 @@ u16 ADC_u16ReadSynchronus ( u8 Copy_u8ChannelNumber )
         u8 ADIF=0 ;
         while( ADIF == 0 )
         {
-            ADIF = GET_BIT(ADCSRA_REG,4);    // Stuck on while untill Flag Raising 1 .
+            ADIF = GET_BIT(ADCSRA_REG,ADCSRA_ADIF);    // Stuck on while untill Flag Raising 1 .
         }
     #endif
 
@@ -192,7 +195,7 @@ u16 ADC_u16ReadSynchronus ( u8 Copy_u8ChannelNumber )
         // Interrupt Flag Will Cleared Automaticlly.    
     #elif ( ADIE == DISABLE )       // work with Polling
         /* Clear Flag */
-        SET_BIT(ADCSRA_REG,4);
+      SET_BIT(ADCSRA_REG,ADCSRA_ADIF);
     #endif 
 
     #if ( ADJUST == RIGHT )
@@ -238,11 +241,11 @@ u16 ADC_u16ReadASynchronus ( u8 Copy_u8ChannelNumber ,  void (*Local_PvoidCallBa
             #if ( ADATE == ENABLE )
                 // Start Conversion When Triggering Occures.
             #elif ( ADATE == DISABLE )
-                SET_BIT(ADCSRA_REG,6);  
+              SET_BIT(ADCSRA_REG,ADCSRA_ADSC);
             #endif
           
             /*     Enable ADIE  AD Interrupt Enable  and Interrupt Flag Will Cleared Automaticlly.       */   
-            SET_BIT(ADCSRA_REG,3);
+          SET_BIT(ADCSRA_REG,ADCSRA_ADIE);
      
            return ADC_u16Result ; 
         
@@ -267,6 +270,6 @@ void __vector_16 (void)
     Global_PF_Vector_16 ();
 
 /*     Disable ADIE  AD Interrupt Enable     */   
-    CLEAR_BIT(ADCSRA_REG,3);   
+    CLR_BIT(ADCSRA_REG,ADCSRA_ADIE);
     
 }

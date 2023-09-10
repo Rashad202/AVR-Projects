@@ -1,3 +1,11 @@
+/*
+ *<<<<<<<<<<<    TIMER_Interface.h   >>>>>>>>>>>>
+ *
+ *  Author : Rashad
+ *  Layer  : MCAL
+ *  SWC    : Timer
+ *
+ */
 #ifndef TIMER1_INTERFACE_H
 #define TIMER1_INTERFACE_H
 

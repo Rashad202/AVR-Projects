@@ -3,12 +3,12 @@
 
 /* LCD Hardware Configration with atmega PORTS & PINS */
 
-#define LCD_CONTROL_PORT         PORTC
-#define LCD_DATA_PORT            PORTD
+#define LCD_CONTROL_PORT         DIO_PORTC
+#define LCD_DATA_PORT            DIO_PORTD
 
-#define RS_PIN                   PIN5
-#define RW_PIN                   PIN6
-#define E_PIN                    PIN7
+#define RS_PIN                   DIO_PIN5
+#define RW_PIN                   DIO_PIN6
+#define E_PIN                    DIO_PIN7
 
 
 #endif

@@ -1,5 +1,13 @@
-#include "../../LIB/STD_TYPES.h"
-#include "../../LIB/BIT_MATH.h"
+/*
+ *<<<<<<<<<<<    TIMER_Program.c   >>>>>>>>>>>>
+ *
+ *  Author : Rashad
+ *  Layer  : MCAL
+ *  SWC    : Timer
+ *
+ */
+#include "../../../LIB/STD_TYPES.h"
+#include "../../../LIB/BIT_MATH.h"
 
 /* Include My own Header Files*/
 #include "TIMER1_Interface.h"
@@ -19,81 +27,81 @@ void TIMER1_voidInit (void)
 
 /*         TIMER1 Mode Selection        */
     #if (MODE == NORMAL_OVF)                             
-        CLEAR_BIT(TCCR1A_REG,TCCR1A_WGM10);
-        CLEAR_BIT(TCCR1A_REG,TCCR1A_WGM11);
-		CLEAR_BIT(TCCR1B_REG,TCCR1B_WGM12);                 
-        CLEAR_BIT(TCCR1B_REG,TCCR1B_WGM13);
+        CLR_BIT(TCCR1A_REG,TCCR1A_WGM10);
+        CLR_BIT(TCCR1A_REG,TCCR1A_WGM11);
+		CLR_BIT(TCCR1B_REG,TCCR1B_WGM12);
+        CLR_BIT(TCCR1B_REG,TCCR1B_WGM13);
         SET_BIT(TIMSK_REG,TIMER_TIMSK_TOIE1);         // Enable T1 OVF Interrupt [PIE]. 
     #elif (MODE == PWM_PHASECORRECT_8_BIT)                     
           SET_BIT(TCCR1A_REG,TCCR1A_WGM10);
-        CLEAR_BIT(TCCR1A_REG,TCCR1A_WGM11);
-		CLEAR_BIT(TCCR1B_REG,TCCR1B_WGM12);                 
-        CLEAR_BIT(TCCR1B_REG,TCCR1B_WGM13);
+        CLR_BIT(TCCR1A_REG,TCCR1A_WGM11);
+		CLR_BIT(TCCR1B_REG,TCCR1B_WGM12);
+        CLR_BIT(TCCR1B_REG,TCCR1B_WGM13);
     #elif (MODE == PWM_PHASECORRECT_9_BIT)                                 
-        CLEAR_BIT(TCCR1A_REG,TCCR1A_WGM10);
+        CLR_BIT(TCCR1A_REG,TCCR1A_WGM10);
           SET_BIT(TCCR1A_REG,TCCR1A_WGM11);
-		CLEAR_BIT(TCCR1B_REG,TCCR1B_WGM12);                 
-        CLEAR_BIT(TCCR1B_REG,TCCR1B_WGM13);           
+		CLR_BIT(TCCR1B_REG,TCCR1B_WGM12);
+        CLR_BIT(TCCR1B_REG,TCCR1B_WGM13);
     #elif (MODE == PWM_PHASECORRECT_10_BIT)                             
           SET_BIT(TCCR1A_REG,TCCR1A_WGM10);
           SET_BIT(TCCR1A_REG,TCCR1A_WGM11);
-		CLEAR_BIT(TCCR1B_REG,TCCR1B_WGM12);                 
-        CLEAR_BIT(TCCR1B_REG,TCCR1B_WGM13);
+		CLR_BIT(TCCR1B_REG,TCCR1B_WGM12);
+        CLR_BIT(TCCR1B_REG,TCCR1B_WGM13);
     #elif (MODE == CTC)
-        CLEAR_BIT(TCCR1A_REG,TCCR1A_WGM10);
-        CLEAR_BIT(TCCR1A_REG,TCCR1A_WGM11);
+        CLR_BIT(TCCR1A_REG,TCCR1A_WGM10);
+        CLR_BIT(TCCR1A_REG,TCCR1A_WGM11);
 		  SET_BIT(TCCR1B_REG,TCCR1B_WGM12);                 
-        CLEAR_BIT(TCCR1B_REG,TCCR1B_WGM13);
+        CLR_BIT(TCCR1B_REG,TCCR1B_WGM13);
         SET_BIT(TIMSK_REG,TIMER_TIMSK_OCIE1A);         // Enable T1 A CTC Interrupt [PIE].
         SET_BIT(TIMSK_REG,TIMER_TIMSK_OCIE1B);         // Enable T1 B CTC Interrupt [PIE].
     #elif (MODE == FAST_PWM_8_BIT)
           SET_BIT(TCCR1A_REG,TCCR1A_WGM10);
-        CLEAR_BIT(TCCR1A_REG,TCCR1A_WGM11);
+        CLR_BIT(TCCR1A_REG,TCCR1A_WGM11);
 		  SET_BIT(TCCR1B_REG,TCCR1B_WGM12);                 
-        CLEAR_BIT(TCCR1B_REG,TCCR1B_WGM13);
+        CLR_BIT(TCCR1B_REG,TCCR1B_WGM13);
     #elif (MODE == FAST_PWM_9_BIT)
-        CLEAR_BIT(TCCR1A_REG,TCCR1A_WGM10);
+        CLR_BIT(TCCR1A_REG,TCCR1A_WGM10);
           SET_BIT(TCCR1A_REG,TCCR1A_WGM11);
 		  SET_BIT(TCCR1B_REG,TCCR1B_WGM12);                 
-        CLEAR_BIT(TCCR1B_REG,TCCR1B_WGM13);
+        CLR_BIT(TCCR1B_REG,TCCR1B_WGM13);
     #elif (MODE == FAST_PWM_10_BIT)
           SET_BIT(TCCR1A_REG,TCCR1A_WGM10);
           SET_BIT(TCCR1A_REG,TCCR1A_WGM11);
 		  SET_BIT(TCCR1B_REG,TCCR1B_WGM12);                 
-        CLEAR_BIT(TCCR1B_REG,TCCR1B_WGM13);
+        CLR_BIT(TCCR1B_REG,TCCR1B_WGM13);
     #elif (MODE == PWM_Phase_FrequencyCorrect_ICR1)
-        CLEAR_BIT(TCCR1A_REG,TCCR1A_WGM10);
-        CLEAR_BIT(TCCR1A_REG,TCCR1A_WGM11);
-		CLEAR_BIT(TCCR1B_REG,TCCR1B_WGM12);                 
+        CLR_BIT(TCCR1A_REG,TCCR1A_WGM10);
+        CLR_BIT(TCCR1A_REG,TCCR1A_WGM11);
+		CLR_BIT(TCCR1B_REG,TCCR1B_WGM12);
           SET_BIT(TCCR1B_REG,TCCR1B_WGM13);
     #elif (MODE == PWM_Phase_FrequencyCorrect)
           SET_BIT(TCCR1A_REG,TCCR1A_WGM10);
-        CLEAR_BIT(TCCR1A_REG,TCCR1A_WGM11);
-		CLEAR_BIT(TCCR1B_REG,TCCR1B_WGM12);                 
+        CLR_BIT(TCCR1A_REG,TCCR1A_WGM11);
+		CLR_BIT(TCCR1B_REG,TCCR1B_WGM12);
           SET_BIT(TCCR1B_REG,TCCR1B_WGM13);
     #elif (MODE == PWM_PhaseCorrect_ICR1)
-        CLEAR_BIT(TCCR1A_REG,TCCR1A_WGM10);
+        CLR_BIT(TCCR1A_REG,TCCR1A_WGM10);
           SET_BIT(TCCR1A_REG,TCCR1A_WGM11);
-		CLEAR_BIT(TCCR1B_REG,TCCR1B_WGM12);                 
+		CLR_BIT(TCCR1B_REG,TCCR1B_WGM12);
           SET_BIT(TCCR1B_REG,TCCR1B_WGM13);
     #elif (MODE == PWM_PhaseCorrect)
           SET_BIT(TCCR1A_REG,TCCR1A_WGM10);
           SET_BIT(TCCR1A_REG,TCCR1A_WGM11);
-		CLEAR_BIT(TCCR1B_REG,TCCR1B_WGM12);                 
+		CLR_BIT(TCCR1B_REG,TCCR1B_WGM12);
           SET_BIT(TCCR1B_REG,TCCR1B_WGM13);
     #elif (MODE == CTC_ICR1)
-        CLEAR_BIT(TCCR1A_REG,TCCR1A_WGM10);
-        CLEAR_BIT(TCCR1A_REG,TCCR1A_WGM11);
+        CLR_BIT(TCCR1A_REG,TCCR1A_WGM10);
+        CLR_BIT(TCCR1A_REG,TCCR1A_WGM11);
 		  SET_BIT(TCCR1B_REG,TCCR1B_WGM12);                 
           SET_BIT(TCCR1B_REG,TCCR1B_WGM13);
           SET_BIT(TIMSK_REG,TIMER_TIMSK_TICIE);         // Enable T1 CTC ICR1 Interrupt [PIE].
     #elif (MODE == Reversed)
           SET_BIT(TCCR1A_REG,TCCR1A_WGM10);
-        CLEAR_BIT(TCCR1A_REG,TCCR1A_WGM11);
+        CLR_BIT(TCCR1A_REG,TCCR1A_WGM11);
 		  SET_BIT(TCCR1B_REG,TCCR1B_WGM12);                 
           SET_BIT(TCCR1B_REG,TCCR1B_WGM13);
     #elif (MODE == FAST_PWM_ICR1)
-        CLEAR_BIT(TCCR1A_REG,TCCR1A_WGM10);
+        CLR_BIT(TCCR1A_REG,TCCR1A_WGM10);
           SET_BIT(TCCR1A_REG,TCCR1A_WGM11);
 		  SET_BIT(TCCR1B_REG,TCCR1B_WGM12);                 
           SET_BIT(TCCR1B_REG,TCCR1B_WGM13);
@@ -108,10 +116,10 @@ void TIMER1_voidInit (void)
 
 /*          OC1A Mode Selection                 */
     #if (OC1A_MODE == DISCONNECTED)
-        CLEAR_BIT(TCCR1A_REG,TCCR1A_COM1A0);
-        CLEAR_BIT(TCCR1A_REG,TCCR1A_COM1A1);
+        CLR_BIT(TCCR1A_REG,TCCR1A_COM1A0);
+        CLR_BIT(TCCR1A_REG,TCCR1A_COM1A1);
     #elif ((OC1A_MODE == SETonTOP_CLEARonCOMPARE) || (OC1A_MODE == SETonCOMPdownCounting_CLEARonCOMPupCounting))
-        CLEAR_BIT(TCCR1A_REG,TCCR1A_COM1A0);
+        CLR_BIT(TCCR1A_REG,TCCR1A_COM1A0);
           SET_BIT(TCCR1A_REG,TCCR1A_COM1A1);
     #elif ((OC1A_MODE == SETonCOMPARE_CLEARonTOP) || (OC1A_MODE == SETonCOMPupCounting_CLEARonCOMPdownCounting))
         SET_BIT(TCCR1A_REG,TCCR1A_COM1A0);
@@ -120,18 +128,18 @@ void TIMER1_voidInit (void)
         #error  Wrong selection of OC1A mode
     #endif
     #if ( MODE == NORMAL_OVF || MODE == CTC || MODE == CTC_ICR1 )       // Compare Output Mode, non-PWM
-        CLEAR_BIT(TCCR1A_REG,TCCR1A_COM1A0);                            // Disable OC1A
-        CLEAR_BIT(TCCR1A_REG,TCCR1A_COM1A1);                            // Disable OC1A
+        CLR_BIT(TCCR1A_REG,TCCR1A_COM1A0);                            // Disable OC1A
+        CLR_BIT(TCCR1A_REG,TCCR1A_COM1A1);                            // Disable OC1A
 
     #endif
 
 /*          OC1B Mode Selection                 */
 
     #if (OC1B_MODE == DISCONNECTED)
-        CLEAR_BIT(TCCR1A_REG,TCCR1A_COM1B0);
-        CLEAR_BIT(TCCR1A_REG,TCCR1A_COM1B1);
+        CLR_BIT(TCCR1A_REG,TCCR1A_COM1B0);
+        CLR_BIT(TCCR1A_REG,TCCR1A_COM1B1);
     #elif ((OC1B_MODE == SETonTOP_CLEARonCOMPARE) || (OC1B_MODE == SETonCOMPdownCounting_CLEARonCOMPupCounting))
-        CLEAR_BIT(TCCR1A_REG,TCCR1A_COM1B0);
+        CLR_BIT(TCCR1A_REG,TCCR1A_COM1B0);
           SET_BIT(TCCR1A_REG,TCCR1A_COM1B1);
     #elif ((OC1B_MODE == SETonCOMPARE_CLEARonTOP) || (OC1B_MODE == SETonCOMPupCounting_CLEARonCOMPdownCounting))
         SET_BIT(TCCR1A_REG,TCCR1A_COM1B0);
@@ -140,8 +148,8 @@ void TIMER1_voidInit (void)
         #error  Wrong selection of OC1B mode
     #endif
     #if ( MODE == NORMAL_OVF || MODE == CTC || MODE == CTC_ICR1 )       // Compare Output Mode, non-PWM
-        CLEAR_BIT(TCCR1A_REG,TCCR1A_COM1B0);                            // Disable OC1B
-        CLEAR_BIT(TCCR1A_REG,TCCR1A_COM1B1);                            // Disable OC1B
+        CLR_BIT(TCCR1A_REG,TCCR1A_COM1B0);                            // Disable OC1B
+        CLR_BIT(TCCR1A_REG,TCCR1A_COM1B1);                            // Disable OC1B
 
     #endif
 
@@ -150,31 +158,31 @@ void TIMER1_voidInit (void)
     TCCR1B_REG = ( TCCR1B_REG & 0b11111000 );              // Clear Prescaller 
 
     #if( PRESCALER == NO_CLK_SOURCE_TIMER_STOPED )          
-        CLEAR_BIT(TCCR1B_REG,TCCR1B_CS10);
-        CLEAR_BIT(TCCR1B_REG,TCCR1B_CS11);
-        CLEAR_BIT(TCCR1B_REG,TCCR1B_CS12);
+        CLR_BIT(TCCR1B_REG,TCCR1B_CS10);
+        CLR_BIT(TCCR1B_REG,TCCR1B_CS11);
+        CLR_BIT(TCCR1B_REG,TCCR1B_CS12);
     #elif ( PRESCALER == NOT_USE_PRESCALER )
           SET_BIT(TCCR1B_REG,TCCR1B_CS10);
-        CLEAR_BIT(TCCR1B_REG,TCCR1B_CS11);
-        CLEAR_BIT(TCCR1B_REG,TCCR1B_CS12);
+        CLR_BIT(TCCR1B_REG,TCCR1B_CS11);
+        CLR_BIT(TCCR1B_REG,TCCR1B_CS12);
     #elif ( PRESCALER == PRESCALER_DIVISION_BY_8 )
-        CLEAR_BIT(TCCR1B_REG,TCCR1B_CS10);
+        CLR_BIT(TCCR1B_REG,TCCR1B_CS10);
           SET_BIT(TCCR1B_REG,TCCR1B_CS11);
-        CLEAR_BIT(TCCR1B_REG,TCCR1B_CS12);
+        CLR_BIT(TCCR1B_REG,TCCR1B_CS12);
     #elif ( PRESCALER == PRESCALER_DIVISION_BY_64 )
           SET_BIT(TCCR1B_REG,TCCR1B_CS10);
           SET_BIT(TCCR1B_REG,TCCR1B_CS11);
-        CLEAR_BIT(TCCR1B_REG,TCCR1B_CS12);
+        CLR_BIT(TCCR1B_REG,TCCR1B_CS12);
     #elif ( PRESCALER == PRESCALER_DIVISION_BY_256 )
-        CLEAR_BIT(TCCR1B_REG,TCCR1B_CS10);
-        CLEAR_BIT(TCCR1B_REG,TCCR1B_CS11);
+        CLR_BIT(TCCR1B_REG,TCCR1B_CS10);
+        CLR_BIT(TCCR1B_REG,TCCR1B_CS11);
           SET_BIT(TCCR1B_REG,TCCR1B_CS12);
     #elif ( PRESCALER == PRESCALER_DIVISION_BY_1024 )
           SET_BIT(TCCR1B_REG,TCCR1B_CS10);
-        CLEAR_BIT(TCCR1B_REG,TCCR1B_CS11);
+        CLR_BIT(TCCR1B_REG,TCCR1B_CS11);
           SET_BIT(TCCR1B_REG,TCCR1B_CS12);
     #elif ( PRESCALER == EXTERNAL_CLK_SOURCE_FALLING_EDGE )
-        CLEAR_BIT(TCCR1B_REG,TCCR1B_CS10);
+        CLR_BIT(TCCR1B_REG,TCCR1B_CS10);
           SET_BIT(TCCR1B_REG,TCCR1B_CS11);
           SET_BIT(TCCR1B_REG,TCCR1B_CS12);
     #elif ( PRESCALER == EXTERNAL_CLK_SOURCE_RAISING_EDGE )
@@ -229,14 +237,14 @@ void TIMER1_voidSetCompareMatchValue_T1B ( u16 Local_u16CompareMatchValue )
 }
 
 
-void TIMER1_voidBahaa_u16PWM_T1A ( u16 Copy_u16CompareMatchValue , u16 Copy_u16TopValue )
+void TIMER1_void_u16PWM_T1A ( u16 Copy_u16CompareMatchValue , u16 Copy_u16TopValue )
 {
     TIMER1_voidSetCompareMatchValue_T1A ( Copy_u16CompareMatchValue );
     ICR1_REG = Copy_u16TopValue ;
 }
 
 
-void TIMER1_voidBahaa_u16PWM_T1B ( u16 Copy_u16CompareMatchValue , u16 Copy_u16TopValue )
+void TIMER1_void_u16PWM_T1B ( u16 Copy_u16CompareMatchValue , u16 Copy_u16TopValue )
 {
     TIMER1_voidSetCompareMatchValue_T1B ( Copy_u16CompareMatchValue );
     ICR1_REG = Copy_u16TopValue ;

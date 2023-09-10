@@ -1,3 +1,11 @@
+/*
+ *<<<<<<<<<<<    TIMER_Private.h   >>>>>>>>>>>>
+ *
+ *  Author : Rashad
+ *  Layer  : MCAL
+ *  SWC    : Timer
+ *
+ */
 #ifndef TIMER0_PRIVATE_H
 #define TIMER0_PRIVATE_H
 

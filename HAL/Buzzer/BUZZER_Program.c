@@ -3,9 +3,8 @@
 
 #include "../../MCAL/DIO/DIO_Interface.h"
 
-#include "BUZZER_int.h"
-#include "BUZZER_private.h"
-#include "BUZZER_conf.h"
+#include "BUZZER_Interface.h"
+
 
 void BUZZER_voidBUZZERInit (void)
 {

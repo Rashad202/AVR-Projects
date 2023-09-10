@@ -1,3 +1,11 @@
+/*
+ *<<<<<<<<<<<    USART_Program.c   >>>>>>>>>>>>
+ *
+ *  Author : Rashad
+ *  Layer  : MCAL
+ *  SWC    : USART
+ *
+ */
 #include "../../LIB/STD_TYPES.h"
 #include "../../LIB/BIT_MATH.h"
 
@@ -17,7 +25,7 @@ void USART_voidInit (void)
 {
 
 /*          BAUD RATE Selection         */
-    CLEAR_BIT(UBRRH_REG,UBRRH_URSEL);                    // access UBRRH to Configer the BAUD Rate
+    CLR_BIT(UBRRH_REG,UBRRH_URSEL);                    // access UBRRH to Configer the BAUD Rate
     u16 UBRR = 0 ;
     #if( SPEED == NORMAL_SPEED )                         // U2X = 1  Normal Speed Transsmition
         UBRR = ( CPU_CLK / ( BAUD_RATE * 8UL ) ) - 1 ;
@@ -29,14 +37,14 @@ void USART_voidInit (void)
 
 /*        USART Initilization           */
     SET_BIT(UCSRC_REG,UCSRC_URSEL);             // Select UCSRC_REG
-    CLEAR_BIT(UCSRC_REG,UCSRC_UMSE1);           // select Async Mode
+    CLR_BIT(UCSRC_REG,UCSRC_UMSE1);           // select Async Mode
 
 /*         Select Parity Mode           */    
     #if ( Parity_Mode == DISABLE )              // Select Parity (Disable)
-        CLEAR_BIT(UCSRC_REG,UCSRC_UPM0);
-        CLEAR_BIT(UCSRC_REG,UCSRC_UPM1);
+        CLR_BIT(UCSRC_REG,UCSRC_UPM0);
+        CLR_BIT(UCSRC_REG,UCSRC_UPM1);
     #elif ( Parity_Mode == EVEN )               // Select Parity (EVEN)
-        CLEAR_BIT(UCSRC_REG,UCSRC_UPM0);
+        CLR_BIT(UCSRC_REG,UCSRC_UPM0);
           SET_BIT(UCSRC_REG,UCSRC_UPM1);
     #elif ( Parity_Mode == ODD )                // Select Parity (ODD)
           SET_BIT(UCSRC_REG,UCSRC_UPM0);
@@ -45,16 +53,38 @@ void USART_voidInit (void)
 
 /*          Select STOP BIT             */
     #if ( STOP_BIT == ONE )
-    CLEAR_BIT(UCSRC_REG,UCSRC_USBS);             // select 1 Stop Bit
+    CLR_BIT(UCSRC_REG,UCSRC_USBS);             // select 1 Stop Bit
     #elif ( STOP_BIT == TWO )
       SET_BIT(UCSRC_REG,UCSRC_USBS);             // select 2 Stop Bit
     #endif
 
 /*       Select Character Size          */
-    // Character size [8] Bit
-      SET_BIT(UCSRC_REG,UCSRC_UCSZ0);
-      SET_BIT(UCSRC_REG,UCSRC_UCSZ1);
-    CLEAR_BIT(UCSRB_REG,UCSRB_UCSZ2);
+
+#if 	DATA_SIZE == DATA_SIZE_5_BIT
+		CLR_BIT(UCSRC_REG , UCSRC_UCSZ0) ;
+		CLR_BIT(UCSRC_REG , UCSRC_UCSZ1) ;
+		CLR_BIT(UCSRB_REG , UCSRB_UCSZ2) ;
+	#elif DATA_SIZE == DATA_SIZE_6_BIT
+		SET_BIT(UCSRC_REG , UCSRC_UCSZ0) ;
+		CLR_BIT(UCSRC_REG , UCSRC_UCSZ1) ;
+		CLR_BIT(UCSRB_REG , UCSRB_UCSZ2) ;
+	#elif DATA_SIZE == DATA_SIZE_7_BIT
+		CLR_BIT(UCSRC_REG , UCSRC_UCSZ0) ;
+		SET_BIT(UCSRC_REG , UCSRC_UCSZ1) ;
+		CLR_BIT(UCSRB_REG , UCSRB_UCSZ2) ;
+	#elif DATA_SIZE == DATA_SIZE_8_BIT
+		SET_BIT(UCSRC_REG , UCSRC_UCSZ0) ;
+		SET_BIT(UCSRC_REG , UCSRC_UCSZ1) ;
+		CLR_BIT(UCSRB_REG , UCSRB_UCSZ2) ;
+	#elif DATA_SIZE == DATA_SIZE_5_BIT
+		SET_BIT(UCSRC_REG , UCSRC_UCSZ0) ;
+		SET_BIT(UCSRC_REG , UCSRC_UCSZ1) ;
+		SET_BIT(UCSRB_REG , UCSRB_UCSZ2) ;
+	#else
+		#error Wrong DATA_SIZE config
+	#endif
+
+
 
 /*          Enable RX & TX              */     
     SET_BIT(UCSRB_REG,UCSRB_TXEN);               // Enable TX 

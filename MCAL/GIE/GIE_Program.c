@@ -1,3 +1,12 @@
+/*
+ *<<<<<<<<<<    GIE_Program.c   >>>>>>>>>>>
+ *
+ *  Author : Rashad
+ *  Layer  : MCAL
+ *  SWC    : GIE
+ *
+ */
+
 #include "../../LIB/STD_TYPES.h"
 #include "../../LIB/BIT_MATH.h"
 
@@ -7,12 +16,11 @@
 #include "GIE_Config.h"
 
 
-void GIE_void_GI_Enable ( u8 Copy_u8Status )
+void GIE_void_Enable ( void)
 {
-    switch ( Copy_u8Status )
-    {
-        case ON  :    SET_BIT(SREG_REG,7);       break;
-        case OFF :    CLEAR_BIT(SREG_REG,7);     break;
-        default  :                               break;
-    }
+         SET_BIT(SREG_REG,SREG_I);
+}
+void GIE_void_Disable ( void)
+{
+         CLR_BIT(SREG_REG,SREG_I);
 }

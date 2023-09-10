@@ -15,8 +15,8 @@ void I2C_voidMasterInit (u8 Copy_u8MasterAddress)
     
     TWBR_REG = 2 ;                        // Set TWBR with vale => 400 KHz ( TWBR = 2 )
     // Set prescaller == 1 (clr TWSR 0,1)
-    CLEAR_BIT(TWSR_REG,TWSR_TWPS0);
-    CLEAR_BIT(TWSR_REG,TWSR_TWPS1);
+    CLR_BIT(TWSR_REG,TWSR_TWPS0);
+    CLR_BIT(TWSR_REG,TWSR_TWPS1);
     /*Check if the master node will be addressed or not*/
 	if( Copy_u8MasterAddress == 0x00 )
 	{
@@ -67,8 +67,8 @@ Error_t I2C_Master_u8SendSLA_Write_ACK (u8 Copy_u8SlaveAddress)
 {
     Error_t Local_Error = I2C_NO_Error ;
     TWDR_REG = (Copy_u8SlaveAddress<<1) ;                           // Write 7 bits slave address ( TWDR == address<<1 )
-    CLEAR_BIT(TWDR_REG,TWDR_TWD0);                                  // Write condition ( CLEAR TWDR 0 )
-    CLEAR_BIT(TWCR_REG,TWCR_TWSTA);                                 // Clear start condition bit ( TWCR 5 ) - for sure
+    CLR_BIT(TWDR_REG,TWDR_TWD0);                                  // Write condition ( CLEAR TWDR 0 )
+    CLR_BIT(TWCR_REG,TWCR_TWSTA);                                 // Clear start condition bit ( TWCR 5 ) - for sure
     SET_BIT(TWCR_REG,TWCR_TWINT);                                   // Clear flag ( Set TWCR 7 )
     while( ( GET_BIT(TWCR_REG,TWCR_TWINT) ) == 0 );                 // Wait for flag ( TWCR 7 == 0 )
     if ( (TWSR_REG & STATUS_BIT_MASK) != MASTER_SLA_Write_ACK )     // Check status code == SLA + Write + ACK == (0x18)
@@ -85,8 +85,8 @@ Error_t I2C_Master_u8SendSLA_Write_NOTACK (u8 Copy_u8SlaveAddress)
     Error_t Local_Error = I2C_NO_Error ;
     Disable_ACK ();                                                    // Disable ACK
     TWDR_REG = (Copy_u8SlaveAddress<<1) ;                              // Write 7 bits slave address ( TWDR == address<<1 )
-    CLEAR_BIT(TWDR_REG,TWDR_TWD0);                                     // Write condition ( CLEAR TWDR 0 )
-    CLEAR_BIT(TWCR_REG,TWCR_TWSTA);                                    // Clear start condition bit ( TWCR 5 ) - for sure
+    CLR_BIT(TWDR_REG,TWDR_TWD0);                                     // Write condition ( CLEAR TWDR 0 )
+    CLR_BIT(TWCR_REG,TWCR_TWSTA);                                    // Clear start condition bit ( TWCR 5 ) - for sure
     SET_BIT(TWCR_REG,TWCR_TWINT);                                      // Clear flag ( Set TWCR 7 )
     while( ( GET_BIT(TWCR_REG,TWCR_TWINT) ) == 0 );                    // Wait for flag ( TWCR 7 == 0 )
     if ( (TWSR_REG & STATUS_BIT_MASK) != MASTER_SLA_Write_NOTACK )     // Check status code == SLA + Write + NOTACK == (0x20)
@@ -103,7 +103,7 @@ Error_t I2C_Master_u8SendSLA_Read_ACK (u8 Copy_u8SlaveAddress)
     Error_t Local_Error = I2C_NO_Error ;
     TWDR_REG = (Copy_u8SlaveAddress<<1) ;                              // Write 7 bits slave address ( TWDR == address<<1 )
     SET_BIT(TWDR_REG,TWDR_TWD0);                                       // Read condition ( SET TWDR 0 )
-    CLEAR_BIT(TWCR_REG,TWCR_TWSTA);                                    // Clear start condition bit ( TWCR 5 ) - for sure
+    CLR_BIT(TWCR_REG,TWCR_TWSTA);                                    // Clear start condition bit ( TWCR 5 ) - for sure
     SET_BIT(TWCR_REG,TWCR_TWINT);                                      // Clear flag ( Set TWCR 7 )
     while( ( GET_BIT(TWCR_REG,TWCR_TWINT) ) == 0 );                    // Wait for flag ( TWCR 7 == 0 )
     if ( (TWSR_REG & STATUS_BIT_MASK) != MASTER_SLA_Read_ACK )         // Check status code == SLA + Read + ACK == (0x40)
@@ -121,7 +121,7 @@ Error_t I2C_Master_u8SendSLA_Read_NOTACK (u8 Copy_u8SlaveAddress)
     Disable_ACK ();                                                    // Disable ACK 
     TWDR_REG = (Copy_u8SlaveAddress<<1) ;                              // Write 7 bits slave address ( TWDR == address<<1 )
     SET_BIT(TWDR_REG,TWDR_TWD0);                                       // Read condition ( SET TWDR 0 )
-    CLEAR_BIT(TWCR_REG,TWCR_TWSTA);                                    // Clear start condition bit ( TWCR 5 ) - for sure
+    CLR_BIT(TWCR_REG,TWCR_TWSTA);                                    // Clear start condition bit ( TWCR 5 ) - for sure
     SET_BIT(TWCR_REG,TWCR_TWINT);                                      // Clear flag ( Set TWCR 7 )
     while( ( GET_BIT(TWCR_REG,TWCR_TWINT) ) == 0 );                    // Wait for flag ( TWCR 7 == 0 )
     if ( (TWSR_REG & STATUS_BIT_MASK) != MASTER_SLA_Read_NOTACK )      // Check status code == SLA + Read + NOTACK == (0x48)
@@ -302,6 +302,6 @@ void Enable_ACK (void)
 void Disable_ACK (void)
 {
     // Disable ACK  ( Clear TWCR 6 )
-    CLEAR_BIT(TWCR_REG,TWCR_TWEA);
+    CLR_BIT(TWCR_REG,TWCR_TWEA);
 }
 
