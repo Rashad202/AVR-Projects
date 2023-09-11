@@ -32,6 +32,11 @@ void KPAD_voidInit (void)
     DIO_voidSetPinDirection (KPAD_PORT,KPAD_R2_PIN,DIO_INPUT);
     DIO_voidSetPinDirection (KPAD_PORT,KPAD_R3_PIN,DIO_INPUT);
 
+    /* Activate Pull-Up Res in Pins of Rows */
+	DIO_voidConfig_Pull_Up_Pin (KPAD_PORT,KPAD_R0_PIN,DIO_ON);
+	DIO_voidConfig_Pull_Up_Pin (KPAD_PORT,KPAD_R1_PIN,DIO_ON);
+	DIO_voidConfig_Pull_Up_Pin (KPAD_PORT,KPAD_R2_PIN,DIO_ON);
+	DIO_voidConfig_Pull_Up_Pin (KPAD_PORT,KPAD_R3_PIN,DIO_ON);
 
 
     /* Deactivate Coloum Pins  */      
