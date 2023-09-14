@@ -237,3 +237,38 @@ void DIO_voidTogglePortValue (u8 Copy_u8PortNumber )
     }
 }
 
+void DIO_voidConfig_Pull_Up_Pin (u8 Copy_u8PortNumber, u8 Copy_u8PinNumber , u8 Copy_u8PullUpStatus )
+{
+    /* i/p validation */
+    if ( Copy_u8PortNumber > DIO_PORTD || Copy_u8PinNumber > DIO_PIN7 )
+    {
+        // Do Nothing
+    }
+    else
+    {
+       switch(Copy_u8PullUpStatus)
+       {
+            case DIO_ON  :   DIO_voidSetPinValue (Copy_u8PortNumber,Copy_u8PinNumber, DIO_HIGH );   break;
+            case DIO_OFF :   DIO_voidSetPinValue (Copy_u8PortNumber,Copy_u8PinNumber, DIO_LOW  );   break;
+            default  :                                                                      break;
+       }
+    }
+}
+
+void DIO_voidConfig_Pull_Up_Port (u8 Copy_u8PortNumber, u8 Copy_u8PullUpStatus )
+{
+    /* i/p validation */
+    if ( Copy_u8PortNumber > DIO_PORTD )
+    {
+        // Do Nothing
+    }
+    else
+    {
+       switch(Copy_u8PullUpStatus)
+       {
+            case DIO_ON :  DIO_voidSetPortValue (Copy_u8PortNumber, DIO_HIGH );  break;
+            case DIO_OFF:  DIO_voidSetPortValue (Copy_u8PortNumber, DIO_LOW );   break;
+            default :                                                    break;
+       }
+    }
+}

@@ -57,4 +57,9 @@ void DIO_voidTogglePinValue (u8 Copy_u8PortNumber, u8 Copy_u8PinNumber );
 
 void DIO_voidTogglePortValue (u8 Copy_u8PortNumber );
 
+void DIO_voidConfig_Pull_Up_Port (u8 Copy_u8PortNumber, u8 Copy_u8PullUpStatus );
+
+void DIO_voidConfig_Pull_Up_Pin (u8 Copy_u8PortNumber,u8 Copy_u8PinNumber,u8 Copy_u8PullUpStatus);
+
+
 #endif
