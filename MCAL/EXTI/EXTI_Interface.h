@@ -36,6 +36,7 @@ void EXTI_voidDisable ( u8 Copy_u8INTnumber );
 
 void EXTI_voidSetCallBack ( u8 Copy_u8INTnumber , void (*Local_PointerToFunction) (void) );
 
+void EXTI_voidClearFlag ( u8 Copy_u8Line );
 
 
 

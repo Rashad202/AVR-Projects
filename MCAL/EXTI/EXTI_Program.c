@@ -129,6 +129,11 @@ void EXTI_voidSetCallBack ( u8 Copy_u8EXTI_INTnumber , void (*Local_PoEXTI_INTer
     } 
 }
 
+void EXTI_voidClearFlag ( u8 Copy_u8Line ){
+
+    SET_BIT( GIFR_REG , Copy_u8Line );
+
+}
 
 void __vector_1 (void)   __attribute__((signal));
 void __vector_1 (void)
@@ -136,6 +141,7 @@ void __vector_1 (void)
     if ( Global_PF_Vector_1 != NULL )
     {
         Global_PF_Vector_1 ();  // calling Global poEXTI_INTer to function that contain address of Application Function with EXTI_INT0.
+        EXTI_voidClearFlag( EXTI_INT0 );
     }
 
 }
@@ -146,6 +152,7 @@ void __vector_2 (void)
     if ( Global_PF_Vector_2 != NULL )
     {
         Global_PF_Vector_2 ();  // calling Global poEXTI_INTer to function that contain address of Application Function with EXTI_INT1.
+        EXTI_voidClearFlag( EXTI_INT1 );
     }
     
 }
@@ -156,5 +163,6 @@ void __vector_3 (void)
     if ( Global_PF_Vector_3 != NULL )
     {
         Global_PF_Vector_3 ();  // calling Global poEXTI_INTer to function that contain address of Application Function with EXTI_INT2.
+        EXTI_voidClearFlag( EXTI_INT2 );
     }
 }
