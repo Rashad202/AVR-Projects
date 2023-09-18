@@ -85,6 +85,14 @@ void LCD_voidWriteString (u8 *Copy_u8Arr )
     {
         LCD_voidWriteChar ( Copy_u8Arr[i] );
         i++;
+        if(i==16)
+        {
+        	LCD_voidGoTo_XY(1,0);
+        }
+        else if(i==32)
+        {
+        	LCD_voidGoTo_XY(0,0);
+        }
     }
 }
 
