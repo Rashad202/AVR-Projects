@@ -47,15 +47,6 @@ void LCD_voidShiftLeft (void);
 void LCD_voidShiftRight (void);
 
 
-void LCD_voidClearGrid ( u8 Copy_u8Line , u8 Copy_u8Position );
-
-
-void LCD_voidClearLine ( u8 Copy_u8Line );
-
-
-
-
-
 
 
 #endif

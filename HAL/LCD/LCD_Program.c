@@ -54,7 +54,7 @@ void LCD_voidWriteCommand ( u8 Copy_u8Command )
 
     /* Falling Edge on E PIN to make LCD Read This Command */
     DIO_voidSetPinValue (LCD_CONTROL_PORT,E_PIN,DIO_HIGH);
-    //_delay_ms(1);
+    _delay_ms(2);
     DIO_voidSetPinValue (LCD_CONTROL_PORT,E_PIN,DIO_LOW);
 }
 
@@ -72,7 +72,7 @@ void LCD_voidWriteChar ( u8 Copy_u8Char )
 
     /* Falling Edge on E PIN to make LCD Read This Command */
     DIO_voidSetPinValue (LCD_CONTROL_PORT,E_PIN,DIO_HIGH);
-    //_delay_ms(1);
+    _delay_ms(1);
     DIO_voidSetPinValue (LCD_CONTROL_PORT,E_PIN,DIO_LOW);
 }
 
@@ -161,6 +161,7 @@ void LCD_voidWritePattern ( u8 Copy_u8Pattern , u8 Copy_u8Line , u8 Copy_u8Posit
 void LCD_voidClearDisplay (void)
 {
     LCD_voidWriteCommand ( DIS_CLEAR );
+    LCD_voidGoTo_XY(0,0);
 }
 
 
@@ -175,7 +176,6 @@ void LCD_voidShiftLeft (void)
 
 
 
-
 void LCD_voidShiftRight (void)
 {
     LCD_voidWriteCommand ( ENTRY_MODE_DECREASE_RIGHT_SHIFT );
@@ -183,24 +183,3 @@ void LCD_voidShiftRight (void)
 
 
 
-
-
-void LCD_voidClearGrid ( u8 Copy_u8Line , u8 Copy_u8Position )
-{
-    LCD_voidGoTo_XY (Copy_u8Line ,Copy_u8Position);
-    LCD_voidWriteChar ( ' ' );
-}
-
-
-
-
-
-
-void LCD_voidClearLine ( u8 Copy_u8Line )
-{
-	for(u8 i=0 ; i<16 ; i++)
-	{
-		LCD_voidGoTo_XY (Copy_u8Line ,i);
-		LCD_voidWriteChar ( ' ' );
-	}
-}
