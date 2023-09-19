@@ -1,3 +1,11 @@
+/*
+ *   			--- LCD_Config.h----
+ *
+ *  Author : Rashad
+ *  Layer  : HAL
+ *  SWC    : LCD
+ *
+ */
 #ifndef LCD_CONFIG_H
 #define LCD_CONFIG_H
 

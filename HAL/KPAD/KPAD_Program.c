@@ -1,3 +1,11 @@
+/*
+ *   			--- KPAD_Program.c----
+ *
+ *  Author : Rashad
+ *  Layer  : HAL
+ *  SWC    : KPAD
+ *
+ */
 #include "../../LIB/STD_TYPES.h"
 #include "../../LIB/BIT_MATH.h"
 
@@ -6,7 +14,6 @@
 
 /* Include My own Header Files*/
 #include "KPAD_Interface.h"
-#include "KPAD_Private.h"
 #include "KPAD_Config.h"
 
 /* Global Arrays */

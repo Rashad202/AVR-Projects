@@ -1,3 +1,11 @@
+/*
+ *   			--- LCD_Private.h----
+ *
+ *  Author : Rashad
+ *  Layer  : HAL
+ *  SWC    : LCD
+ *
+ */
 #ifndef LCD_PRIVATE_H
 #define LCD_PRIVATE_H
 

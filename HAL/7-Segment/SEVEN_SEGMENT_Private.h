@@ -1,3 +1,11 @@
+/*
+ *   			--- SEVEN_SEGMENT_Private.h----
+ *
+ *  Author : Rashad
+ *  Layer  : HAL
+ *  SWC    : SEVEN_SEGMENT
+ *
+ */
 #ifndef SEVEN_SEGMENT_PRIVATE_H
 #define SEVEN_SEGMENT_PRIVATE_H
 
@@ -11,7 +19,7 @@
 #define THREE       0b10110000
 #define FOUR        0b10011001
 #define FIVE        0b10010010
-#define SEX         0b10000010
+#define SIX         0b10000010
 #define SEVEN       0b11111000
 #define EIGHT       0b10000000
 #define NINE        0b10010000

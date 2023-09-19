@@ -1,3 +1,11 @@
+/*
+ *   			--- SERVO_Program.c----
+ *
+ *  Author : Rashad
+ *  Layer  : HAL
+ *  SWC    : SERVO MOTOR
+ *
+ */
 #include "../../LIB/STD_TYPES.h"
 #include "../../LIB/BIT_MATH.h"
 

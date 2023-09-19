@@ -1,3 +1,11 @@
+/*
+ *   			--- LCD_Program.c----
+ *
+ *  Author : Rashad
+ *  Layer  : HAL
+ *  SWC    : LCD
+ *
+ */
 #include "../../LIB/STD_TYPES.h"
 #include "../../LIB/BIT_MATH.h"
 

@@ -1,3 +1,12 @@
+/*
+ *   			--- DCMOTOR_Interface.h----
+ *
+ *  Author : Rashad
+ *  Layer  : HAL
+ *  SWC    : DCMOTOR
+ *
+ */
+
 #ifndef DCMOTOR_INTERFACE_H
 #define DCMOTOR_INTERFACE_H
 

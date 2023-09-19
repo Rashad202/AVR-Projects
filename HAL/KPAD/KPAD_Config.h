@@ -1,3 +1,12 @@
+/*
+ *   			--- KPAD_Config.h----
+ *
+ *  Author : Rashad
+ *  Layer  : HAL
+ *  SWC    : KPAD
+ *
+ */
+
 #ifndef KPAD_CONFIG_H
 #define KPAD_CONFIG_H
 

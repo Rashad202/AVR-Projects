@@ -1,3 +1,12 @@
+/*
+ *   			--- DCMOTOR_Program.h----
+ *
+ *  Author : Rashad
+ *  Layer  : HAL
+ *  SWC    : DCMOTOR
+ *
+ */
+
 #include "../../LIB/STD_TYPES.h"
 #include "../../LIB/BIT_MATH.h"
 #include<util/delay.h>

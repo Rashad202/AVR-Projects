@@ -1,3 +1,13 @@
+/*
+ *   			--- STEPPER_Program.c----
+ *
+ *  Author : Rashad
+ *  Layer  : HAL
+ *  SWC    : STEPPER
+ *
+ */
+
+
 #include "../../LIB/STD_TYPES.h"
 #include "../../LIB/BIT_MATH.h"
 #include <util/delay.h>

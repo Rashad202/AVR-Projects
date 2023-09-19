@@ -1,3 +1,11 @@
+/*
+ *   			--- KPAD_Interface.h----
+ *
+ *  Author : Rashad
+ *  Layer  : HAL
+ *  SWC    : KPAD
+ *
+ */
 #ifndef KPAD_INTERFACE_H
 #define KPAD_INTERFACE_H
 

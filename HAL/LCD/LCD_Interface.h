@@ -1,3 +1,11 @@
+/*
+ *   			--- LCD_Interface.h----
+ *
+ *  Author : Rashad
+ *  Layer  : HAL
+ *  SWC    : LCD
+ *
+ */
 #ifndef LCD_INTERFACE_H
 #define LCD_INTERFACE_H
 

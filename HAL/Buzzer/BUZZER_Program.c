@@ -1,3 +1,13 @@
+/*
+ *   			--- BUZZER_Program.c----
+ *
+ *  Author : Rashad
+ *  Layer  : HAL
+ *  SWC    : BUZZER
+ *
+ */
+
+
 #include "../../LIB/STD_TYPES.h"
 #include "../../LIB/BIT_MATH.h"
 
@@ -6,26 +16,27 @@
 #include "BUZZER_Interface.h"
 
 
-void BUZZER_voidBUZZERInit (void)
+void BUZZER_voidBUZZERInit (u8 Copy_u8PortNumber,u8 Copy_u8PinNumber)
 {
 	/** select direction of buzzer as output */
-    DIO_voidSetPinDirection(BUZZER_PORT , BUZZER_PIN , BUZZER_OUTPUT) ; 
+    DIO_voidSetPinDirection(Copy_u8PortNumber , Copy_u8PinNumber , BUZZER_OUTPUT) ;
 }
 
-void BUZZER_voidBUZZEROn (void)
+
+void BUZZER_voidBUZZEROn (u8 Copy_u8PortNumber,u8 Copy_u8PinNumber)
 {
 	/**make buzzer on (it's pin is high)*/
-	DIO_voidSetPinValue(BUZZER_PORT , BUZZER_PIN,BUZZER_HIGH) ; 
+	DIO_voidSetPinValue(Copy_u8PortNumber , Copy_u8PinNumber,BUZZER_HIGH) ;
 }
 
-void BUZZER_voidBUZZEROff (void)
+void BUZZER_voidBUZZEROff (u8 Copy_u8PortNumber,u8 Copy_u8PinNumber)
 {
 	/**make buzzer off (it's pin is low)*/
-	DIO_voidSetPinValue(BUZZER_PORT , BUZZER_PIN,BUZZER_LOW) ;
+	DIO_voidSetPinValue(Copy_u8PortNumber , Copy_u8PinNumber,BUZZER_LOW) ;
 }
 
-void BUZZER_voidBUZZERToggle (void)
+void BUZZER_voidBUZZERToggle  (u8 Copy_u8PortNumber,u8 Copy_u8PinNumber)
 {
 	/**inverse the status of buzzer*/
-	DIO_voidTogglePinValue(BUZZER_PORT , BUZZER_PIN) ; 
+	DIO_voidTogglePinValue(Copy_u8PortNumber , Copy_u8PinNumber) ;
 }

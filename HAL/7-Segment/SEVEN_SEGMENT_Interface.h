@@ -1,3 +1,12 @@
+/*
+ *   			--- SEVEN_SEGMENT_Interface.h----
+ *
+ *  Author : Rashad
+ *  Layer  : HAL
+ *  SWC    : SEVEN_SEGMENT
+ *
+ */
+
 #ifndef SEVEN_SEGMENT_INTERFACE_H
 #define SEVEN_SEGMENT_INTERFACE_H
 

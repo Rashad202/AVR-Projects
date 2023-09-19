@@ -1,3 +1,11 @@
+/*
+ *   			--- SEVEN_SEGMENT_Program.c----
+ *
+ *  Author : Rashad
+ *  Layer  : HAL
+ *  SWC    : SEVEN_SEGMENT
+ *
+ */
 #include "../../LIB/STD_TYPES.h"
 #include "../../LIB/BIT_MATH.h"
 /* Include Header Files From MCAL Layer */
@@ -8,7 +16,7 @@
 #include "SEVEN_SEGMENT_Private.h"
 
 
-u8 Common_Anode_Arr[10]= {ZERO,ONE,TWO,THREE,FOUR,FIVE,SEX,SEVEN,EIGHT,NINE} ;
+u8 Common_Anode_Arr[]= {ZERO,ONE,TWO,THREE,FOUR,FIVE,SIX,SEVEN,EIGHT,NINE,A,B,C,D,E,F} ;
 
 
 
