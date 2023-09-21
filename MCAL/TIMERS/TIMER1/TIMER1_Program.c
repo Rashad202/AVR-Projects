@@ -15,7 +15,8 @@
 #include "TIMER1_Config.h"
 
 void (*Global_PointerToFunction_OVF_T1) (void) = NULL ; 
-void (*Global_PointerToFunction_CTC_T1) (void) = NULL ; 
+void (*Global_PointerToFunction_CTC_TA) (void) = NULL ; 
+void (*Global_PointerToFunction_CTC_TB) (void) = NULL ;
 u16 Global_u16PreloadValue = 0 ;
 u16 Global_u16CompareMatchValue_1A = 0 ;
 u16 Global_u16CompareMatchValue_1B = 0 ;
@@ -201,11 +202,16 @@ void TIMER1_voidSetCallBack_OVF (void (*Local_PointerToFunction_OVF) (void))
 }
 
 
-void TIMER1_voidSetCallBack_CTC (void (*Local_PointerToFunction_CTC) (void))
+void TIMER1_voidSetCallBack_CTC_A (void (*Local_PointerToFunction_CTC) (void))
 {
-    Global_PointerToFunction_CTC_T1 = Local_PointerToFunction_CTC ;
+    Global_PointerToFunction_CTC_TA = Local_PointerToFunction_CTC ;
 }
 
+
+void TIMER1_voidSetCallBack_CTC_B (void (*Local_PointerToFunction_CTC) (void))
+{
+    Global_PointerToFunction_CTC_TB = Local_PointerToFunction_CTC ;
+}
 
 
 
@@ -255,4 +261,32 @@ void TIMER1_void_u16PWM_T1B ( u16 Copy_u16CompareMatchValue , u16 Copy_u16TopVal
 
 
 
+/*TIMER1 Normal Mode ISR*/
+void __vector_9 (void)      __attribute__((signal)) ;
+void __vector_9 (void)
+{
+    if (Global_PointerToFunction_OVF_T1 != NULL)
+    {
+    	Global_PointerToFunction_OVF_T1() ;
+    }
+}
 
+/*TIMER1 CTCB Mode ISR*/
+void __vector_8 (void)      __attribute__((signal)) ;
+void __vector_8 (void)
+{
+    if (Global_PointerToFunction_CTC_TB != NULL)
+    {
+    	Global_PointerToFunction_CTC_TB() ;
+    }
+}
+
+/*TIMER1 CTCA Mode ISR*/
+void __vector_7 (void)      __attribute__((signal)) ;
+void __vector_7 (void)
+{
+    if (Global_PointerToFunction_CTC_TA != NULL)
+    {
+    	Global_PointerToFunction_CTC_TA() ;
+    }
+}
